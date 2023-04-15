@@ -1,0 +1,122 @@
+{% extends 'base_client.html' %}
+
+{% block main %}
+<main class="d-flex justify-content-center py-4" style="background-color: var(--bs-gray-200);">
+<style>
+    .right{
+        text-align: right;
+    }
+    .row{
+        margin-bottom: 6px !important;
+    }
+</style>
+<div class="check wave-top wave-white bg-white p-5">
+    <div class="check-top text-center">
+        <div>Общество с ограниченной ответственностью "Сервис по хранению шин"</div>
+        <div>109316, г.Москва, ул. Бакунинская, д. 84</div>
+        <div>ИНН:
+            000000000000
+        </div>
+        <div>Место расчётов:
+            https://Tire-Storage.ru/
+        </div>
+    </div>
+    <h1 class="check-headline text-center">Кассовый чек</h1>
+    <div class="check-sections">
+        <div class="check-section">
+            <div class="row">
+                <div class="col">Приход</div>
+                <div class="col right" >{{ order.payed_at }}</div>
+            </div>
+            <div class="row">
+                <div class="col">применяемая система налогообложения</div>
+                <div data-max-lines="2" class="col right"
+                    style="overflow-wrap: break-word;">ОСН</div>
+            </div>
+            <div class="row">
+                <div class="col check-col-left">Телефон или электронный адрес покупателя</div>
+                <div data-max-lines="2" class="col right js__trim_long_text_initialized"
+                    style="overflow-wrap: break-word;">{{ order.user.email }}</div>
+            </div>
+            <div class="row">
+                <div class="col check-col-left">признак расчетов в сети Интернет</div>
+                <div data-max-lines="2" class="col right js__trim_long_text_initialized"
+                    style="overflow-wrap: break-word;">да</div>
+            </div>
+        </div>
+        <hr>
+        <div class="check-section">
+            <div class="check-product-name">Размер шин {{ order.size }}, Срок хранение {{ order.period }}, Количество шин {{ order.quantity }}</div>
+            <div class="row">
+                <div class="col right">1 х {{ order.price }} руб. </div>
+            </div>
+            <div class="row">
+                <div class="col check-col-left">общая стоимость позиции</div>
+                <div data-max-lines="2" class="col right js__trim_long_text_initialized"
+                    style="overflow-wrap: break-word;">{{ order.price.price }}</div>
+            </div>
+            <div class="row">
+                <div class="col check-col-left">Ставка НДС</div>
+                <div data-max-lines="2" class="col right js__trim_long_text_initialized"
+                    style="overflow-wrap: break-word;">20%</div>
+            </div>
+            <div class="row">
+                <div class="col check-col-left">Сумма НДС</div>
+                <div data-max-lines="2" class="col right js__trim_long_text_initialized"
+                    style="overflow-wrap: break-word;">{{ order.get_nds }}</div>
+            </div>
+            <div class="row">
+                <div class="col check-col-left">предмет расчета</div>
+                <div data-max-lines="2" class="col right js__trim_long_text_initialized"
+                    style="overflow-wrap: break-word;">УСЛУГА</div>
+            </div>
+            <div class="row">
+                <div class="col check-col-left">способ расчета</div>
+                <div data-max-lines="2" class="col right js__trim_long_text_initialized"
+                    style="overflow-wrap: break-word;">ПОЛНЫЙ РАСЧЕТ</div>
+            </div>
+        </div>
+        <hr>
+        <div class="check-section">
+            <div class="row check-totals pb-3">
+                <h4 class="col">Итог</h4>
+                <h4 class="col right"> = {{ order.price }}</h4>
+            </div>
+            <div class="row">
+                <div class="col check-col-left">БЕЗНАЛИЧНЫМИ</div>
+                <div class="col right">{{ order.price }}</div>
+            </div>
+            <div class="row">
+                <div class="col check-col-left">НДС 20%</div>
+                <div class="col right">{{ order.get_nds }}</div>
+            </div>
+        </div>
+        <hr>
+        <div class="check-section">
+            <div class="row">
+                <small class="col check-col-left">N ФН</small>
+                <small class="col right">9960440300934272</small>
+            </div>
+            <div class="row">
+                <small class="col check-col-left">регистрационный номер ККТ</small>
+                <small class="col right">0004520116062679</small>
+            </div>
+            <div class="row">
+                <small class="col check-col-left">N ФД</small>
+                <small class="col right">22854</small>
+            </div>
+            <div class="row">
+                <small class="col check-col-left">ФП</small>
+                <small class="col right">3594680112</small>
+            </div>
+            <div class="row">
+                <small class="col check-col-left">версия ФФД</small>
+                <small class="col right">1.05</small>
+            </div>
+        </div>
+    </div>
+    <div class="text-center h5">Спасибо за покупку!</div>
+</div>
+
+</main>
+{% endblock %}

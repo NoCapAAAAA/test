@@ -1,0 +1,33 @@
+{% extends 'base_client.html' %}
+
+{% block title %} Авторизация {% endblock %}
+
+{% block main %}
+<main>
+
+    <form action="" method="post" class="d-flex flex-column align-items-center mb-4">
+        <h1 class="my-4">Авторизация</h1>
+        {% csrf_token %}
+        {% if form.non_field_errors %}
+        <div class="non-field-errors border border-danger text-danger rounded text-center px-2 py-1"
+            style="max-width: 300px; min-width: 140px;">
+            {% for err in form.non_field_errors %}
+            <p class="form-error m-0">{{ err }}</p>
+            {% endfor %}
+        </div>
+        {% endif %}
+
+        <div class="fields d-flex flex-column w-50 mb-2" style="max-width: 300px; min-width: 140px;">
+            {% for f in form %}
+            <label for="{{ f.id_for_label }}">{{ f.label }}</label>
+            {{ f }}
+            {% endfor %}
+        </div>
+        <div>
+            <input type="submit" value="Войти" class="btn btn-primary" />
+        </div>
+        {{ msg }}
+    </form>
+    <p class="text-center">Еще не зарегистрированы? <a href="{% url 'sing_up' %}" class="link link-primary">Зарегистрироваться</a></p>
+</main>
+{% endblock %}

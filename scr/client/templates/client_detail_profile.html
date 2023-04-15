@@ -1,0 +1,90 @@
+{% extends 'base_client.html' %}
+{% load static %}
+{% block title %} Мой аккаунт {% endblock %}
+
+{% block main %}
+<div class="block">
+	<div class="container">
+		<div class="row">
+
+			{% include 'client_abstract_main.html' %}
+			<div class="col-12 col-lg-9 mt-4 mt-lg-0">
+				<div class="dashboard">
+					<div class="dashboard__profile card profile-card">
+						<div class="card-body profile-card__body">
+							<div class="profile-card__avatar">
+								<img src="{{ user.photo.url }}" alt="">
+							</div>
+							<div class="profile-card__name">{{ user.username }}</div>
+							<div class="profile-card__email">{{ user.email }}</div>
+							<div class="profile-card__edit">
+								<a href="{% url 'client_edit_profile' %}" class="btn btn-secondary btn-sm">Редактировать профиль</a>
+							</div>
+						</div>
+					</div>
+					<div class="dashboard__address card address-card address-card--featured">
+						<div class="address-card__badge">Детальная информация</div>
+						<div class="address-card__body">
+							<div class="address-card__name">{{ user.first_name }} {{ user.last_name }}</div>
+							<div class="address-card__row">
+							</div>
+							<div class="address-card__row">
+								<div class="address-card__row-title">Номер телефона</div>
+								<div class="address-card__row-content">{{ user.phone_number }}</div>
+							</div>
+							<div class="address-card__row">
+								<div class="address-card__row-title">Эл. адрес</div>
+								<div class="address-card__row-content">{{ user.email }}</div>
+							</div>
+							<div class="address-card__row">
+								<div class="address-card__row-title">Пол</div>
+								<div class="address-card__row-content">{{ user.get_gender_display }}</div>
+							</div>
+						</div>
+					</div>
+					<div class="dashboard__orders card">
+						<div class="card-header">
+							<h5>Recent Orders</h5>
+						</div>
+						<div class="card-divider"></div>
+						<div class="card-table">
+							<div class="table-responsive-sm">
+								<table>
+									<thead>
+										<tr>
+											<th>Order</th>
+											<th>Date</th>
+											<th>Status</th>
+											<th>Total</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td><a href="">#8132</a></td>
+											<td>02 April, 2019</td>
+											<td>Pending</td>
+											<td>$2,719.00 for 5 item(s)</td>
+										</tr>
+										<tr>
+											<td><a href="">#7592</a></td>
+											<td>28 March, 2019</td>
+											<td>Pending</td>
+											<td>$374.00 for 3 item(s)</td>
+										</tr>
+										<tr>
+											<td><a href="">#7192</a></td>
+											<td>15 March, 2019</td>
+											<td>Shipped</td>
+											<td>$791.00 for 4 item(s)</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}

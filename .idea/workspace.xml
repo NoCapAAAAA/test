@@ -1,8 +1,378 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/user/Desktop&quot;
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="132ad331-964d-48f4-a76e-3d9a75e6d02f" name="Changes" comment="aa">
+      <change afterPath="$PROJECT_DIR$/scr/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/authentication/forms.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/authentication/templates/sing_in.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/authentication/templates/sing_up.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/authentication/urls.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/forms.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/css/style.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/css/style.css.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/css/style.ltr.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/css/style.ltr.css.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/css/style.rtl.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/css/style.rtl.css.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/fonts/stroyka/stroyka.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/fonts/stroyka/stroyka.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/fonts/stroyka/stroyka.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/fonts/stroyka/stroyka.woff" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/images/aboutus.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/images/avatars/avatar-1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/images/avatars/avatar-2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/images/avatars/avatar-3.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/images/avatars/avatar-4.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/images/banners/banner-1-mobile.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/images/banners/banner-1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/images/categories/category-1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/images/categories/category-2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/images/categories/category-3.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/images/categories/category-4.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/images/categories/category-5.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/images/categories/category-6.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/images/favicon.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/images/finder/finder.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/images/languages/language-1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/images/languages/language-1@2x.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/images/languages/language-2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/images/languages/language-2@2x.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/images/languages/language-3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/images/languages/language-3@2x.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/images/languages/language-4.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/images/languages/language-4@2x.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/images/languages/language-5.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/images/languages/language-5@2x.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/images/logos/logo-1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/images/logos/logo-2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/images/logos/logo-3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/images/logos/logo-4.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/images/logos/logo-5.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/images/logos/logo-6.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/images/logos/logo-7.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/images/megamenu/megamenu-1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/images/megamenu/megamenu-2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/images/megamenu/megamenu-3.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/images/payments.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/images/posts/post-1-thumbnail.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/images/posts/post-1-thumbnail@2x.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/images/posts/post-1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/images/posts/post-10.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/images/posts/post-2-thumbnail.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/images/posts/post-2-thumbnail@2x.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/images/posts/post-2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/images/posts/post-3-thumbnail.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/images/posts/post-3-thumbnail@2x.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/images/posts/post-3.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/images/posts/post-4.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/images/posts/post-5.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/images/posts/post-6.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/images/posts/post-7.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/images/posts/post-8.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/images/posts/post-9.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/images/posts/post-featured.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/images/products/product-1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/images/products/product-10.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/images/products/product-11.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/images/products/product-12.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/images/products/product-13.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/images/products/product-14.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/images/products/product-15.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/images/products/product-16-1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/images/products/product-16-2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/images/products/product-16-3.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/images/products/product-16-4.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/images/products/product-16.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/images/products/product-2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/images/products/product-3.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/images/products/product-4.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/images/products/product-5.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/images/products/product-6.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/images/products/product-7.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/images/products/product-8.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/images/products/product-9.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/images/slides/slide-1-full.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/images/slides/slide-1-mobile.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/images/slides/slide-1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/images/slides/slide-2-full.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/images/slides/slide-2-mobile.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/images/slides/slide-2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/images/slides/slide-3-full.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/images/slides/slide-3-mobile.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/images/slides/slide-3.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/images/sprite.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/images/teammates/teammate-1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/images/teammates/teammate-2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/images/teammates/teammate-3.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/js/header.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/js/main.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/js/number.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/vendor/bootstrap/css/bootstrap-grid.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/vendor/bootstrap/css/bootstrap-grid.css.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/vendor/bootstrap/css/bootstrap-grid.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/vendor/bootstrap/css/bootstrap-grid.min.css.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/vendor/bootstrap/css/bootstrap-reboot.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/vendor/bootstrap/css/bootstrap-reboot.css.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/vendor/bootstrap/css/bootstrap-reboot.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/vendor/bootstrap/css/bootstrap-reboot.min.css.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/vendor/bootstrap/css/bootstrap.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/vendor/bootstrap/css/bootstrap.css.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/vendor/bootstrap/css/bootstrap.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/vendor/bootstrap/css/bootstrap.min.css.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/vendor/bootstrap/js/bootstrap.bundle.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/vendor/bootstrap/js/bootstrap.bundle.js.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/vendor/bootstrap/js/bootstrap.bundle.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/vendor/bootstrap/js/bootstrap.bundle.min.js.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/vendor/bootstrap/js/bootstrap.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/vendor/bootstrap/js/bootstrap.js.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/vendor/bootstrap/js/bootstrap.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/vendor/bootstrap/js/bootstrap.min.js.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/vendor/fontawesome/LICENSE.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/vendor/fontawesome/css/all.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/vendor/fontawesome/css/all.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/vendor/fontawesome/css/brands.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/vendor/fontawesome/css/brands.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/vendor/fontawesome/css/fontawesome.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/vendor/fontawesome/css/fontawesome.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/vendor/fontawesome/css/regular.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/vendor/fontawesome/css/regular.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/vendor/fontawesome/css/solid.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/vendor/fontawesome/css/solid.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/vendor/fontawesome/css/svg-with-js.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/vendor/fontawesome/css/svg-with-js.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/vendor/fontawesome/css/v4-shims.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/vendor/fontawesome/css/v4-shims.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/vendor/fontawesome/webfonts/fa-brands-400.eot" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/vendor/fontawesome/webfonts/fa-brands-400.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/vendor/fontawesome/webfonts/fa-brands-400.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/vendor/fontawesome/webfonts/fa-brands-400.woff" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/vendor/fontawesome/webfonts/fa-brands-400.woff2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/vendor/fontawesome/webfonts/fa-regular-400.eot" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/vendor/fontawesome/webfonts/fa-regular-400.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/vendor/fontawesome/webfonts/fa-regular-400.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/vendor/fontawesome/webfonts/fa-regular-400.woff" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/vendor/fontawesome/webfonts/fa-regular-400.woff2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/vendor/fontawesome/webfonts/fa-solid-900.eot" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/vendor/fontawesome/webfonts/fa-solid-900.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/vendor/fontawesome/webfonts/fa-solid-900.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/vendor/fontawesome/webfonts/fa-solid-900.woff" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/vendor/fontawesome/webfonts/fa-solid-900.woff2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/vendor/jquery/jquery.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/vendor/jquery/jquery.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/vendor/jquery/jquery.min.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/vendor/jquery/jquery.slim.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/vendor/jquery/jquery.slim.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/vendor/jquery/jquery.slim.min.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/vendor/nouislider/nouislider.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/vendor/nouislider/nouislider.d.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/vendor/nouislider/nouislider.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/vendor/nouislider/nouislider.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/vendor/nouislider/nouislider.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/vendor/nouislider/nouislider.min.mjs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/vendor/nouislider/nouislider.mjs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/vendor/owl-carousel/LICENSE" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/vendor/owl-carousel/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/vendor/owl-carousel/assets/ajax-loader.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/vendor/owl-carousel/assets/owl.carousel.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/vendor/owl-carousel/assets/owl.carousel.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/vendor/owl-carousel/assets/owl.theme.default.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/vendor/owl-carousel/assets/owl.theme.default.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/vendor/owl-carousel/assets/owl.theme.green.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/vendor/owl-carousel/assets/owl.theme.green.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/vendor/owl-carousel/assets/owl.video.play.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/vendor/owl-carousel/owl.carousel.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/vendor/owl-carousel/owl.carousel.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/vendor/photoswipe/default-skin/default-skin.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/vendor/photoswipe/default-skin/default-skin.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/vendor/photoswipe/default-skin/default-skin.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/vendor/photoswipe/default-skin/preloader.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/vendor/photoswipe/photoswipe-ui-default.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/vendor/photoswipe/photoswipe-ui-default.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/vendor/photoswipe/photoswipe.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/vendor/photoswipe/photoswipe.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/vendor/photoswipe/photoswipe.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/vendor/select2/css/select2.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/vendor/select2/css/select2.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/vendor/select2/js/i18n/af.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/vendor/select2/js/i18n/ar.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/vendor/select2/js/i18n/az.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/vendor/select2/js/i18n/bg.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/vendor/select2/js/i18n/bn.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/vendor/select2/js/i18n/bs.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/vendor/select2/js/i18n/build.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/vendor/select2/js/i18n/ca.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/vendor/select2/js/i18n/cs.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/vendor/select2/js/i18n/da.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/vendor/select2/js/i18n/de.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/vendor/select2/js/i18n/dsb.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/vendor/select2/js/i18n/el.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/vendor/select2/js/i18n/en.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/vendor/select2/js/i18n/es.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/vendor/select2/js/i18n/et.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/vendor/select2/js/i18n/eu.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/vendor/select2/js/i18n/fa.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/vendor/select2/js/i18n/fi.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/vendor/select2/js/i18n/fr.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/vendor/select2/js/i18n/gl.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/vendor/select2/js/i18n/he.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/vendor/select2/js/i18n/hi.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/vendor/select2/js/i18n/hr.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/vendor/select2/js/i18n/hsb.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/vendor/select2/js/i18n/hu.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/vendor/select2/js/i18n/hy.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/vendor/select2/js/i18n/id.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/vendor/select2/js/i18n/is.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/vendor/select2/js/i18n/it.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/vendor/select2/js/i18n/ja.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/vendor/select2/js/i18n/ka.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/vendor/select2/js/i18n/km.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/vendor/select2/js/i18n/ko.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/vendor/select2/js/i18n/lt.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/vendor/select2/js/i18n/lv.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/vendor/select2/js/i18n/mk.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/vendor/select2/js/i18n/ms.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/vendor/select2/js/i18n/nb.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/vendor/select2/js/i18n/ne.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/vendor/select2/js/i18n/nl.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/vendor/select2/js/i18n/pl.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/vendor/select2/js/i18n/ps.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/vendor/select2/js/i18n/pt-BR.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/vendor/select2/js/i18n/pt.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/vendor/select2/js/i18n/ro.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/vendor/select2/js/i18n/ru.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/vendor/select2/js/i18n/sk.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/vendor/select2/js/i18n/sl.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/vendor/select2/js/i18n/sq.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/vendor/select2/js/i18n/sr-Cyrl.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/vendor/select2/js/i18n/sr.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/vendor/select2/js/i18n/sv.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/vendor/select2/js/i18n/th.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/vendor/select2/js/i18n/tk.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/vendor/select2/js/i18n/tr.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/vendor/select2/js/i18n/uk.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/vendor/select2/js/i18n/vi.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/vendor/select2/js/i18n/zh-CN.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/vendor/select2/js/i18n/zh-TW.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/vendor/select2/js/select2.full.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/vendor/select2/js/select2.full.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/vendor/select2/js/select2.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/vendor/select2/js/select2.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/vendor/svg4everybody/svg4everybody.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/vendor/svg4everybody/svg4everybody.legacy.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/vendor/svg4everybody/svg4everybody.legacy.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/static/vendor/svg4everybody/svg4everybody.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/templates/base_client.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/templates/cheque.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/templates/client_abstract_main.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/templates/client_detail_profile.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/templates/client_edit_profile.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/templates/client_order_create.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/templates/client_order_detail.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/templates/client_order_list.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/templates/client_password_reset.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/templates/home.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/client/urls.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/templates/BASE.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/templates/BASE_ORG.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scr/authentication/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/scr/authentication/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scr/authentication/apps.py" beforeDir="false" afterPath="$PROJECT_DIR$/scr/authentication/apps.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scr/authentication/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/scr/authentication/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scr/authentication/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/scr/authentication/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scr/conf/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/scr/conf/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scr/conf/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/scr/conf/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scr/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/scr/db.sqlite3" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="HTML File" />
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="PUSH_AUTO_UPDATE" value="true" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="UPDATE_TYPE" value="REBASE" />
+  </component>
+  <component name="ProjectId" id="2OTHuINhXzVlmnAv6JLAiMHhzOX" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "DefaultHtmlFileTemplate": "HTML File",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SONARLINT_PRECOMMIT_ANALYSIS": "true",
+    "git-widget-placeholder": "master",
+    "last_opened_file_path": "C:/Users/user/PycharmProjects/scr/scr/client"
   }
-}</component>
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\user\PycharmProjects\scr\scr\client" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\user\PycharmProjects\scr\scr\client\templates" />
+      <recent name="C:\Users\user\PycharmProjects\scr\scr\authentication\templates" />
+      <recent name="C:\Users\user\PycharmProjects\scr\scr" />
+    </key>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="132ad331-964d-48f4-a76e-3d9a75e6d02f" name="Changes" comment="" />
+      <created>1681577872410</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1681577872410</updated>
+    </task>
+    <task id="LOCAL-00001" summary="aa">
+      <created>1681578710223</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1681578710223</updated>
+    </task>
+    <task id="LOCAL-00002" summary="aa">
+      <created>1681578748790</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1681578748790</updated>
+    </task>
+    <task id="LOCAL-00003" summary="aa">
+      <created>1681578960705</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1681578960705</updated>
+    </task>
+    <task id="LOCAL-00004" summary="aa">
+      <created>1681579015650</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1681579015650</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
+    <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="aa" />
+    <option name="LAST_COMMIT_MESSAGE" value="aa" />
+  </component>
 </project>

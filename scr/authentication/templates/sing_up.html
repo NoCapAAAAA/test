@@ -1,0 +1,15 @@
+{% extends 'base_client.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %} Регистрация {% endblock %}
+
+{% block main %}
+<main class="d-flex justify-content-center">
+<form action="" method="post" class=" mb-4" style="width: 400px;">
+    <h1 class="my-4 text-center">Регистрация</h1>
+    {% csrf_token %}
+    {{ form|crispy}}
+    <input class="btn btn-primary mt-3" type="submit" value="Зарегистрироваться">
+</form>
+</main>
+{% endblock %}

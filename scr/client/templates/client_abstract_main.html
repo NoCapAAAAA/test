@@ -1,0 +1,22 @@
+<div class="col-12 col-lg-3 d-flex">
+	<div class="account-nav flex-grow-1">
+		<h4 class="account-nav__title">Навигация</h4>
+		<ul>
+			<li class="account-nav__item  account-nav__item--active ">
+				<a href="{% url 'client_detail_profile' %}">Информационная панель</a>
+			</li>
+			<li class="account-nav__item ">
+				<a href="{% url 'client_edit_profile' %}">Редактировать профиль</a>
+			</li>
+			<li class="account-nav__item ">
+				<a href="{% url 'client_order_list' %}">Заказы</a>
+			</li>
+			<li class="account-nav__item ">
+				<a href="{% url 'client_pass_reset' %}">Изменить пароль</a>
+			</li>
+			<li class="account-nav__item ">
+				<a href="{% url 'logout' %}">Выйти</a>
+			</li>
+		</ul>
+	</div>
+</div>

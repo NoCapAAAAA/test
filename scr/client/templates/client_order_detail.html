@@ -1,0 +1,78 @@
+{% extends 'base_client.html' %}
+{% load static %}
+{% block title %}Детальная информация о заказе{% endblock %}
+{% block main %}
+<main>
+  <div class="block">
+    <div class="container">
+      <div class="row">
+        {% include 'client_abstract_main.html' %}
+        {% for order in detail %}
+        <div class="col-12 col-lg-9 mt-4 mt-lg-0">
+          <div class="card">
+            <div class="order-header">
+              <div class="order-header__actions">
+                <a href="{% url 'client_order_list' %}" class="btn btn-xs btn-secondary">Назад к списку</a>
+              </div>
+              <h5 class="order-header__title">Номер {{order.id}}</h5>
+              <div class="order-header__subtitle">
+                Оформлен
+                <mark class="order-header__date">{{order.created_at}}</mark>
+
+              </div>
+            </div>
+            <div class="card-divider"></div>
+            <div class="card-table">
+              <div class="table-responsive-sm">
+                <table>
+                  <tfoot>
+                    <tr>
+                      <th>Стоимость</th>
+                      <td>{{ order.price }}</td>
+                    </tr>
+                  </tfoot>
+                  <tfoot>
+                    <tr>
+                      <th>Статус</th>
+                      <td>{{ order.get_status_display }}</td>
+                    </tr>
+                  </tfoot>
+                  <tfoot>
+                    <tr>
+                      <th>Размер шин</th>
+                      <td>{{ order.size }}</td>
+                    </tr>
+                  </tfoot>
+                  <tfoot>
+                    <tr>
+                      <th>Срок хранения</th>
+                      <td>{{ order.period }}</td>
+                    </tr>
+                  </tfoot>
+
+                  <tfoot>
+                    <tr>
+                      <th>Количество шин</th>
+                      <td>{{ order.quantity }}</td>
+                    </tr>
+                  </tfoot>
+                </table>
+                    {% if not order.is_payed and order.status != status_cancelled %}
+                    <a href="{% url 'order_pay_tire' order.pk %}" class="btn btn-primary">Оплатить</a>
+                    {% endif %}
+                    {% if order.status != status_cancelled and not order.is_payed %}
+                    <a href="{% url 'order_cancel_tire' order.pk %}" class="btn btn-danger">Отменить</a>
+                    {% endif %}
+                    {% if order.is_payed %}
+                    <a href="{% url 'order_cheque_tire' order.pk %}" class="btn btn-primary">Просмотреть чек</a>
+                    {% endif %}
+              </div>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</main>
+{% endblock %}
