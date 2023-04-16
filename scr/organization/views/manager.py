@@ -1,8 +1,9 @@
-import datetime
 from core import models as m
 from django.utils import timezone
+import datetime
 from django.contrib import messages
 from organization import forms as f
+from service.filters import UserFilters
 from django.urls import reverse_lazy
 from django.contrib.auth import get_user_model
 from django.views.generic import UpdateView, CreateView, TemplateView, ListView, DetailView
@@ -42,8 +43,7 @@ class ManagerOrdersListView(ListView):
     context_object_name = 'orders'
     paginate_by = 7
 
-    @staticmethod
-    def get_date_range_default():
+    def get_date_range_default(self):
         date1 = timezone.now()
         date2 = timezone.now()
         return date1, date2
@@ -104,7 +104,18 @@ class ManagerUsersListView(ListView):
     template_name = 'manager/list_users_manager.html'
     model = User
     paginate_by = 7
-    context_object_name = 'users'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['users'] = User.objects.all()
+        context['filter'] = UserFilters(self.request.GET, queryset=self.get_queryset())
+        return context
+
+    def get_queryset(self, **kwargs):
+        search_results = UserFilters(self.request.GET, self.queryset)
+        self.no_search_result = True if not search_results.qs else False
+        return search_results.qs.distinct() or self.model.objects.all()
+
 
 
 class ManagerDetailUserView(TemplateView):

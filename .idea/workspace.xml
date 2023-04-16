@@ -5,41 +5,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="132ad331-964d-48f4-a76e-3d9a75e6d02f" name="Changes" comment="aa">
-      <change afterPath="$PROJECT_DIR$/scr/organization/templates/director/home_director.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/scr/organization/templates/manager/list_orders_manager.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/scr/organization/templates/parts/director_second_head.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/scr/organization/templates/parts/manager_first_head.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/scr/organization/templates/parts/manager_second_head.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/scr/organization/views/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/scr/organization/views/manager.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/organization/as.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scr/service/filters.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/2/1/210806edc060da8e0afd6a19d182db49d4b783e4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/f/c/fcd4ea5d06533a2af6beb54f4008ac4858e95d5c" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/2/1/210806edc060da8e0afd6a19d182db49d4b783e4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/f/c/fcd4ea5d06533a2af6beb54f4008ac4858e95d5c" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/index.pb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scr/client/admin.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/scr/client/models.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/scr/client/tests.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/scr/core/tests.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/scr/core/views.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/scr/conf/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/scr/conf/settings.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/scr/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/scr/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scr/organization/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/scr/organization/forms.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scr/organization/models.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/scr/organization/templates/director/base_director.html" beforeDir="false" afterPath="$PROJECT_DIR$/scr/organization/templates/director/base_director.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scr/organization/templates/director/create_employee_director.html" beforeDir="false" afterPath="$PROJECT_DIR$/scr/organization/templates/director/create_employee_director.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scr/organization/templates/director/home_derictor.html" beforeDir="false" afterPath="$PROJECT_DIR$/scr/organization/templates/director/list_employee_director.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scr/organization/templates/director/orders_report_director.html" beforeDir="false" afterPath="$PROJECT_DIR$/scr/organization/templates/director/orders_report_director.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scr/organization/templates/director/users_report_director.html" beforeDir="false" afterPath="$PROJECT_DIR$/scr/organization/templates/director/users_report_director.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scr/organization/templates/manager/base_manager.html" beforeDir="false" afterPath="$PROJECT_DIR$/scr/organization/templates/manager/base_manager.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scr/organization/templates/manager/create_order_manager.html" beforeDir="false" afterPath="$PROJECT_DIR$/scr/organization/templates/manager/create_order_manager.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scr/organization/templates/manager/create_user_manager.html" beforeDir="false" afterPath="$PROJECT_DIR$/scr/organization/templates/manager/create_user_manager.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scr/organization/templates/manager/detail_order_manager.html" beforeDir="false" afterPath="$PROJECT_DIR$/scr/organization/templates/manager/detail_order_manager.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scr/organization/templates/manager/detail_user_manager.html" beforeDir="false" afterPath="$PROJECT_DIR$/scr/organization/templates/manager/detail_user_manager.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scr/organization/templates/manager/home_manager.html" beforeDir="false" afterPath="$PROJECT_DIR$/scr/organization/templates/manager/home_manager.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scr/organization/templates/manager/lisr_orders_manager.html" beforeDir="false" afterPath="$PROJECT_DIR$/scr/organization/templates/parts/director_first_head.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scr/organization/templates/manager/list_orders_manager.html" beforeDir="false" afterPath="$PROJECT_DIR$/scr/organization/templates/manager/list_orders_manager.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/scr/organization/templates/manager/list_users_manager.html" beforeDir="false" afterPath="$PROJECT_DIR$/scr/organization/templates/manager/list_users_manager.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scr/organization/templates/views/director.py" beforeDir="false" afterPath="$PROJECT_DIR$/scr/organization/views/director.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scr/organization/templates/views/manager.py" beforeDir="false" afterPath="$PROJECT_DIR$/scr/organization/as.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scr/organization/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/scr/organization/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scr/organization/views.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/scr/organization/views/manager.py" beforeDir="false" afterPath="$PROJECT_DIR$/scr/organization/views/manager.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,8 +28,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Python Script" />
         <option value="HTML File" />
+        <option value="Python Script" />
       </list>
     </option>
   </component>
@@ -217,7 +196,14 @@
       <option name="project" value="LOCAL" />
       <updated>1681638225892</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="aa">
+      <created>1681656898015</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1681656898015</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">

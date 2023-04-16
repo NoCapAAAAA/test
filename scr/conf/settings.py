@@ -21,9 +21,11 @@ INSTALLED_APPS = [
     'authentication',
     'client',
     'organization',
-    # install
+    # install,
     'crispy_forms',
     'crispy_bootstrap4',
+    'django_filters',
+    'bootstrapform'
 ]
 AUTH_USER_MODEL = 'authentication.User'
 MIDDLEWARE = [
