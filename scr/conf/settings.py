@@ -23,6 +23,7 @@ INSTALLED_APPS = [
     'organization',
     # install
     'crispy_forms',
+    'crispy_bootstrap4',
 ]
 AUTH_USER_MODEL = 'authentication.User'
 MIDDLEWARE = [
