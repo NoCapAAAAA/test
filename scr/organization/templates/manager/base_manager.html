@@ -1,10 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-
-</body>
-</html>
+{% extends 'BASE_ORG.html' %}
+{% load static %}
+{% block title %} Панель управления менеджера {% endblock %}
+{% block header %}
+{% include "parts/director_first_head.html" %}
+{% include "parts/manager_second_head.html" %}
+{% endblock %}
+{% block main %}
+{% endblock %}

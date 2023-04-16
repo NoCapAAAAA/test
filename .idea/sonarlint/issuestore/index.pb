@@ -231,8 +231,6 @@ d
 4scr/client/static/vendor/fontawesome/css/regular.css,3\1\316d4efe56f467de1c26b6bc0596874fbbc9fde4
 e
 5scr/client/static/vendor/fontawesome/css/v4-shims.css,0\5\050a1fac054bdd49d6fedf229c20ea9d3c810d11
-U
-%scr/client/templates/base_client.html,1\b\1b10beca94560ad09e4053b9698e9b6d9d81d052
 f
 6scr/client/static/vendor/fontawesome/css/solid.min.css,2\3\23abc16bbd75b215a0395fa0d28830de254c3a17
 g
@@ -265,8 +263,6 @@ l
 <scr/client/static/vendor/fontawesome/css/svg-with-js.min.css,3\9\393d9f354323a786ece7b7db84932351defd0c55
 _
 /scr/client/templates/client_password_reset.html,d\7\d7ce8842eb22a60c9c1a1791eb6ccd809f1fbdfb
-N
-scr/client/templates/home.html,3\f\3fd0c4e4644bcb959e686b79ada27d11ce57fd2a
 V
 &scr/client/templates/parts/footer.html,6\e\6ef46b20bcd5c51a63a89fa180931ef50d3cc3cc
 V
@@ -341,8 +337,6 @@ C
 scr/client/admin.py,9\5\9512d1ecfeba7f6d60ca2737689fea45c4f1ac95
 B
 scr/client/apps.py,0\a\0a43512a069500d77bdebe5a01724670b4ace949
-D
-scr/client/models.py,4\a\4a14a8ef0fcb69757b49d4661d2127e655c53097
 C
 scr/client/tests.py,f\1\f18d30250621d6d34aa929f6dd15697c4a31f236
 F
@@ -353,8 +347,6 @@ I
 scr/organization/admin.py,3\3\338886a47808491aa1c2ea65ae5a2d8fca3d09ba
 H
 scr/organization/apps.py,5\f\5f4c164489fd759ceaf4a4f256e613620d3be319
-J
-scr/organization/models.py,1\0\10699a6eb215af4b02d8c3e75952a964b436114b
 I
 scr/organization/tests.py,b\8\b82eb59b6fd6761ab5eb30bb31133552c91cd4b1
 L

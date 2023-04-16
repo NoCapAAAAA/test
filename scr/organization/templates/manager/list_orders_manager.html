@@ -1,0 +1,110 @@
+{% extends 'manager/base_manager.html' %}
+{% load static %}
+{% block title %} Список заказов {% endblock %}
+{% block main %}
+<form action="" method="get" class="my-4 ">
+        <input type="date" name="date_from" value="{{ date_from }}" id="date_from">
+        <input type="date" name="date_until" value="{{ date_until }}" id="date_until">
+        <!-- <input type="checkbox" name="report" value="report" id="">
+        <label for="report">Сформировать отчет</label> -->
+        <input type="submit" value="Просмотр" class="btn btn-primary">
+    </form>
+    <div class="page-header d-md-flex justify-content-between">
+      <div>
+        <h3>Заказы</h3>
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+              <a href="{% url 'manager_home' %}">Главная</a>
+            </li>
+            <li class="breadcrumb-item">
+              <a href="#">Комерция</a>
+            </li>
+            <li class="breadcrumb-item active" aria-current="page">Заказы</li>
+          </ol>
+        </nav>
+      </div>
+      <div class="mt-2 mt-md-0">
+        <div class="dropdown">
+          <a href="#" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+            <i class="ti-settings mr-2"></i> Actions
+          </a>
+          <div class="dropdown-menu dropdown-menu-right">
+            <a class="dropdown-item" href="#">Action</a>
+            <a class="dropdown-item" href="#">Another action</a>
+            <a class="dropdown-item" href="#">Something else here</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-body">
+            <h6 class="card-title">Все заказы</h6>
+            <div class="table-responsive">
+              <table id="orders" class="table">
+                <thead>
+                  <tr>
+                    <th>
+                      <div class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input" id="orders-select-all">
+                        <label class="custom-control-label" for="orders-select-all"></label>
+                      </div>
+                    </th>
+                    <th>Номер</th>
+                    <th>Клиент</th>
+                    <th>Цена</th>
+                    <th>Статус</th>
+                    <th>Дата оформления</th>
+                    <th class="text-right">Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                {% for order in orders %}
+                  <tr>
+                    <td></td>
+                    <td>
+                      <a href="{{ order.pk }}">№{{ order.pk }}</a>
+                    </td>
+                    <td>{{ order.user }}</td>
+                    <td>{{ order.price }}</td>
+                    <td>
+                      <span class="badge bg-secondary-bright text-secondary">{{ order.get_status_display }}</span>
+                    </td>
+                    <td>{{ order.created_at }}</td>
+                    <td class="text-right">
+                      <div class="dropdown">
+                        <a href="#" data-toggle="dropdown" class="btn btn-floating" aria-haspopup="true" aria-expanded="false">
+                          <i class="ti-more-alt"></i>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right">
+                          <a href="#" class="dropdown-item">View Detail</a>
+                          <a href="#" class="dropdown-item">Send</a>
+                          <a href="#" class="dropdown-item">Download</a>
+                          <a href="#" class="dropdown-item">Print</a>
+                          <a href="#" class="dropdown-item text-danger">Delete</a>
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                {% endfor %}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <nav aria-label="...">
+      <ul class="pagination">
+        {% if page_obj.has_previous %}
+        <li class="page-item"> <a class="page-link" href="?page={{ page_obj.previous_page_number }}" aria-disabled="true">&lt;</a> </li>
+        {% endif %}
+        <li class="page-item active" aria-current="page"> <a class="page-link">{{ page_obj.number }}<span class="sr-only">(current)</span></a> </li>
+        {% if page_obj.has_next %}
+        <li class="page-item"> <a class="page-link" href="?page={{ page_obj.next_page_number }}" aria-disabled="true">&gt;</a> </li>
+        {% endif %}
+      </ul>
+    </nav>
+{% endblock %}

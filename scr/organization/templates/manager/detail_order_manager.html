@@ -1,10 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'manager/base_manager.html' %}
+{% load static %}
+{% block title %} Детальная информация о заказе {% endblock %}
+{% load crispy_forms_tags %}
+{% block main %}
+<div class="order-header__actions">
+                <a href="{% url 'manager_orders_list_view' %}" class="btn btn-xs btn-secondary">Назад к списку</a>
+              </div>
+<form action="" method="post">
 
-</body>
-</html>
+    {% csrf_token %}
+    {{ form }}
+    <button type="submit">Сохронить</button>
+</form>
+{% endblock %}

@@ -18,7 +18,7 @@ class CreateUserForm(auth_forms.UserCreationForm):
 
     class Meta:
         model = user_model
-        fields = '__all__'
+        fields = ('username', 'email', 'first_name', 'last_name', 'middle_name', 'gender', 'phone_number', 'password1', 'password2')
 
 class SettingsProfile(auth_forms.UserChangeForm):
     password = None
@@ -45,7 +45,7 @@ class UpdateOrderDir(forms.ModelForm):
         fields = '__all__'
 
 
-class OrderCreate(forms.ModelForm):
+class CreateOrderForm(forms.ModelForm):
     price = forms.IntegerField(widget=forms.HiddenInput(), required=False)
     user = forms.ModelChoiceField(queryset=get_user_model().objects.all(),)
 

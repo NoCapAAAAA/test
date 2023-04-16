@@ -1,0 +1,46 @@
+<div class="navigation">
+	<div class="navigation-header"> <span>Навигация</span>
+		<a href="#"> <i class="ti-close"></i> </a>
+	</div>
+	<div class="navigation-menu-body">
+		<ul>
+			<li>
+				<a class="active" href="{% url 'manager_home' %}"> <span class="nav-link-icon">
+                  <i data-feather="pie-chart"></i>
+                    </span> <span>Панель управления</span> </a>
+			</li>
+            <li>
+                <a href="#">
+                    <span class="nav-link-icon">
+                        <i data-feather="edit-3"></i>
+                    </span>
+                    <span>Формы</span>
+                </a>
+				<ul>
+                    <li>
+                        <a  href="{% url 'manager_create_order_view' %}">Заказы</a>
+                    </li>
+                    <li>
+                        <a  href="{% url 'manager_create_user_view' %}">Пользователи</a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="{% url 'manager_users_list_view' %}">
+                    <span class="nav-link-icon">
+                        <i data-feather="edit-3"></i>
+                    </span>
+                    <span>Список пользователей</span>
+                </a>
+            </li>
+            <li>
+                <a href="{% url 'manager_orders_list_view' %}">
+                    <span class="nav-link-icon">
+                        <i data-feather="edit-3"></i>
+                    </span>
+                    <span>Список заказов</span>
+                </a>
+            </li>
+		</ul>
+	</div>
+</div>
