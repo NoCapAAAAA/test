@@ -20,7 +20,7 @@
             <div class="dropdown-menu dropdown-menu-big p-4 dropdown-menu-right">
                 <form method="get">
                     {{ filter.form }}
-                    <button type="submit">Применить</button>
+                    <input type="submit" class="btn btn-default add-to-cart" value="Применить"></input>
                 </form>
             </div>
         </div>
@@ -54,7 +54,7 @@
                             <th class="text-right">Action</th>
                         </tr>
                         </thead>
-                        {% for u in users %}
+                        {% for u in page_obj %}
                         <tbody>
                         <tr>
                             <td>{{u.pk}}</td>
@@ -97,4 +97,15 @@
         </div>
     </div>
 </div>
+<nav aria-label="...">
+  <ul class="pagination">
+    {% if page_obj.has_previous %}
+    <li class="page-item"> <a class="page-link" href="?page={{ page_obj.previous_page_number }}" aria-disabled="true">&lt;</a> </li>
+    {% endif %}
+    <li class="page-item active" aria-current="page"> <a class="page-link">{{ page_obj.number }}<span class="sr-only">(current)</span></a> </li>
+    {% if page_obj.has_next %}
+    <li class="page-item"> <a class="page-link" href="?page={{ page_obj.next_page_number }}" aria-disabled="true">&gt;</a> </li>
+    {% endif %}
+  </ul>
+</nav>
 {% endblock %}

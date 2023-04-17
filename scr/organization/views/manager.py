@@ -6,7 +6,7 @@ from organization import forms as f
 from service.filters import UserFilters
 from django.urls import reverse_lazy
 from django.contrib.auth import get_user_model
-from django.views.generic import UpdateView, CreateView, TemplateView, ListView, DetailView
+from django.views.generic import UpdateView, CreateView, TemplateView, ListView
 
 
 User = get_user_model()
@@ -103,7 +103,7 @@ class ManagerCreateUserView(CreateView):
 class ManagerUsersListView(ListView):
     template_name = 'manager/list_users_manager.html'
     model = User
-    paginate_by = 7
+    paginate_by = 3
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -114,7 +114,9 @@ class ManagerUsersListView(ListView):
     def get_queryset(self, **kwargs):
         search_results = UserFilters(self.request.GET, self.queryset)
         self.no_search_result = True if not search_results.qs else False
-        return search_results.qs.distinct() or self.model.objects.all()
+        return search_results.qs.distinct()
+
+
 
 
 
