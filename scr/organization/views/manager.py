@@ -8,8 +8,8 @@ from django.urls import reverse_lazy
 from django.contrib.auth import get_user_model
 from django.views.generic import UpdateView, CreateView, TemplateView, ListView
 
-
 User = get_user_model()
+
 
 class ManagerHomeView(TemplateView):
     template_name = 'manager/home_manager.html'
@@ -100,10 +100,12 @@ class ManagerCreateUserView(CreateView):
     form_class = f.CreateUserForm
 
 
+# Список пользователей с возможностью поиска по полю 'id' и филдьтрацией по полю 'gender',
+# так же предусмотрена пагинация в 7 объектов
 class ManagerUsersListView(ListView):
     template_name = 'manager/list_users_manager.html'
     model = User
-    paginate_by = 3
+    paginate_by = 7
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -117,8 +119,17 @@ class ManagerUsersListView(ListView):
         return search_results.qs.distinct()
 
 
-
-
-
-class ManagerDetailUserView(TemplateView):
+class ManagerDetailUserView(UpdateView):
     template_name = 'manager/detail_user_manager.html'
+    model = User
+    form_class = f.SettingsProfile
+
+    def get_queryset(self):
+        return User.objects.filter(pk=self.kwargs['pk'])
+
+    def form_valid(self, form):
+        messages.success(self.request, "The user was updated successfully.")
+        return super(ManagerDetailUserView, self).form_valid(form)
+
+    def get_success_url(self):
+        return reverse_lazy('manager_detail_user_view', kwargs={'pk': self.kwargs['pk']})

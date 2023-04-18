@@ -57,7 +57,7 @@
                         {% for u in page_obj %}
                         <tbody>
                         <tr>
-                            <td>{{u.pk}}</td>
+                            <td><a href="{{ u.pk }}">№{{ u.pk }}</a></td>
                             <td>
                                 <a href="#">
                                     <figure class="avatar avatar-sm mr-2">

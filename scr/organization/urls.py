@@ -19,7 +19,7 @@ urlpatterns = [
 
     path('manager/create-user', manager_views.ManagerCreateUserView.as_view(), name='manager_create_user_view'),
     path('manager/user-list/', manager_views.ManagerUsersListView.as_view(), name='manager_users_list_view'),
-    path('manager/user-detail', manager_views.ManagerDetailUserView.as_view(), name='manager_detail_user_view'),
+    path('manager/user-list/<int:pk>/', manager_views.ManagerDetailUserView.as_view(), name='manager_detail_user_view'),
 
     # Создание контрагента
     # Создание отчёта по пользователям
