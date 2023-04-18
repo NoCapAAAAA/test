@@ -2,11 +2,13 @@
 {% load static %}
 {% block title %} Список заказов {% endblock %}
 {% block main %}
-<form action="" method="get" class="my-4 ">
-    <input type="date" name="date_from" value="{{ date_from }}" id="date_from">
-    <input type="date" name="date_until" value="{{ date_until }}" id="date_until">
-    <input type="submit" value="Просмотр" class="btn btn-primary">
-</form>
+{% load crispy_forms_tags %}
+<!--<form action="" method="get" class="my-4 ">-->
+<!--    <input type="date" name="date_from" value="{{ date_from }}" id="date_from">-->
+<!--    <input type="date" name="date_until" value="{{ date_until }}" id="date_until">-->
+<!--    <input type="submit" value="Просмотр" class="btn btn-primary">-->
+<!--</form>-->
+
 <div class="page-header d-md-flex justify-content-between">
   <div>
     <h3>Заказы</h3>
@@ -23,17 +25,16 @@
     </nav>
   </div>
   <div class="mt-2 mt-md-0">
-    <div class="dropdown">
-      <a href="#" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
-        <i class="ti-settings mr-2"></i> Actions
-      </a>
-      <div class="dropdown-menu dropdown-menu-right">
-        <a class="dropdown-item" href="#">Action</a>
-        <a class="dropdown-item" href="#">Another action</a>
-        <a class="dropdown-item" href="#">Something else here</a>
-      </div>
+        <div class="dropdown">
+            <a href="#" class="btn btn-success dropdown-toggle" title="Filter" data-toggle="dropdown">Фильтры</a>
+            <div class="dropdown-menu dropdown-menu-big p-4 dropdown-menu-right">
+                <form method="get">
+                    {{ filter.form|crispy }}
+                    <input type="submit" class="btn btn-default add-to-cart" value="Применить"></input>
+                </form>
+            </div>
+        </div>
     </div>
-  </div>
 </div>
 <div class="row">
   <div class="col-md-12">
@@ -44,12 +45,6 @@
           <table id="orders" class="table">
             <thead>
               <tr>
-                <th>
-                  <div class="custom-control custom-checkbox">
-                    <input type="checkbox" class="custom-control-input" id="orders-select-all">
-                    <label class="custom-control-label" for="orders-select-all"></label>
-                  </div>
-                </th>
                 <th>Номер</th>
                 <th>Клиент</th>
                 <th>Цена</th>
@@ -59,9 +54,8 @@
               </tr>
             </thead>
             <tbody>
-            {% for order in orders %}
+            {% for order in page_obj %}
               <tr>
-                <td></td>
                 <td>
                   <a href="{{ order.pk }}">№{{ order.pk }}</a>
                 </td>

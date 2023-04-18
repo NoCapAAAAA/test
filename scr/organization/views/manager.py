@@ -3,7 +3,7 @@ from django.utils import timezone
 import datetime
 from django.contrib import messages
 from organization import forms as f
-from service.filters import UserFilters
+from service.filters import UserFilters, OrdersFilter
 from django.urls import reverse_lazy
 from django.contrib.auth import get_user_model
 from django.views.generic import UpdateView, CreateView, TemplateView, ListView
@@ -40,42 +40,55 @@ class ManagerCreateOrderView(CreateView):
 class ManagerOrdersListView(ListView):
     template_name = 'manager/list_orders_manager.html'
     model = m.OrderStorage
-    context_object_name = 'orders'
     paginate_by = 7
-
-    def get_date_range_default(self):
-        date1 = timezone.now()
-        date2 = timezone.now()
-        return date1, date2
-
-    def get_date_range(self):
-        strptime = datetime.datetime.strptime
-        try:
-            date1 = (strptime(self.request.GET.get('date_from'), r'%Y-%m-%d'))
-            date2 = (strptime(self.request.GET.get('date_until'), r'%Y-%m-%d'))
-        except TypeError:
-            date1, date2 = self.get_date_range_default()
-
-        if date1 > date2:
-            date1, date2 = date2, date1
-        return date1, date2
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        date1, date2 = self.get_date_range()
-        context['date_from'], context['date_until'] = (
-            date1.strftime(r'%Y-%m-%d'), date2.strftime(r'%Y-%m-%d'))
-        context['today'] = timezone.now()
+        context['orders'] = m.OrderStorage.objects.all()
+        context['filter'] = OrdersFilter(self.request.GET, queryset=self.get_queryset())
         return context
 
-    def get_queryset(self):
-        queryset = m.OrderStorage.objects.all().order_by('-pk')
-        date_from, date_until = self.get_date_range()
-        queryset = queryset.filter(
-            created_at__gte=datetime.datetime.combine(date_from, datetime.time.min),
-            created_at__lte=datetime.datetime.combine(date_until, datetime.time.max)
-        )
-        return queryset
+    def get_queryset(self, **kwargs):
+        search_results = OrdersFilter(self.request.GET, self.queryset)
+        self.no_search_result = True if not search_results.qs else False
+        return search_results.qs.distinct()
+
+    # def get_date_range_default(self):
+    #     date1 = timezone.now()
+    #     date2 = timezone.now()
+    #     return date1, date2
+    #
+    # def get_date_range(self):
+    #     strptime = datetime.datetime.strptime
+    #     try:
+    #         date1 = (strptime(self.request.GET.get('date_from'), r'%Y-%m-%d'))
+    #         date2 = (strptime(self.request.GET.get('date_until'), r'%Y-%m-%d'))
+    #     except TypeError:
+    #         date1, date2 = self.get_date_range_default()
+    #
+    #     if date1 > date2:
+    #         date1, date2 = date2, date1
+    #     return date1, date2
+    #
+    # def get_context_data(self, **kwargs):
+    #     context = super().get_context_data(**kwargs)
+    #     date1, date2 = self.get_date_range()
+    #     context['date_from'], context['date_until'] = (
+    #         date1.strftime(r'%Y-%m-%d'), date2.strftime(r'%Y-%m-%d'))
+    #     context['today'] = timezone.now()
+    #     context['filter'] = OrdersFilter(self.request.GET)
+    #     return context
+    #
+    # def get_queryset(self):
+    #     queryset = m.OrderStorage.objects.all().order_by('-pk')
+    #     date_from, date_until = self.get_date_range()
+    #     queryset = queryset.filter(
+    #         created_at__gte=datetime.datetime.combine(date_from, datetime.time.min),
+    #         created_at__lte=datetime.datetime.combine(date_until, datetime.time.max)
+    #     )
+    #     search_results = UserFilters(self.request.GET, self.queryset)
+    #
+    #     return queryset or search_results
 
 
 class ManagerDetailOrderView(UpdateView):
