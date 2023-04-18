@@ -105,15 +105,6 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/*------------------------------------------------------------------
-
-Project:      Gogi - Bootstrap Admin Dashboard Template
-Version:      1.0
-Author:       laborasyon
-Author URL:   https://themeforest.net/user/laborasyon/portfolio
-
----------------------------------------------------------------------*/
-
 
 (function ($) {
   var wind_ = $(window),
