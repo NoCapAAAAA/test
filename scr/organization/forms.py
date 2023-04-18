@@ -19,6 +19,11 @@ class CreateUserForm(auth_forms.UserCreationForm):
     class Meta:
         model = user_model
         fields = ('username', 'email', 'first_name', 'last_name', 'middle_name', 'gender', 'phone_number', 'password1', 'password2')
+        help_texts = {
+            'username': None,
+            'password1': None,
+        }
+
 
 class SettingsProfile(auth_forms.UserChangeForm):
     password = None
@@ -26,6 +31,9 @@ class SettingsProfile(auth_forms.UserChangeForm):
     class Meta:
         model = user_model
         fields = ('username', 'email', 'last_name', 'first_name', 'middle_name', 'phone_number', 'gender', 'photo')
+        help_texts = {
+            'username': None,
+        }
 
 
 class CustomPasswordChangeForm(auth_forms.PasswordChangeForm):
@@ -48,6 +56,7 @@ class UpdateOrderDir(forms.ModelForm):
 class CreateOrderForm(forms.ModelForm):
     price = forms.IntegerField(widget=forms.HiddenInput(), required=False)
     user = forms.ModelChoiceField(queryset=get_user_model().objects.all(),)
+    payed_at = forms.DateTimeField(widget=forms.HiddenInput(), required=False)
 
     class Meta:
         model = m.OrderStorage

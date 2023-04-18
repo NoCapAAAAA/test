@@ -2,10 +2,50 @@
 {% load static %}
 {% block title %} Оформление заказа {% endblock %}
 {% block main %}
-Офоррмление заказы
-<form action="" method="post">
-    {% csrf_token %}
-    {{ form }}
-    <button type="submit">Оформить</button>
-</form>
+{% load crispy_forms_tags %}
+<div class="row">
+    <div class="col-md-12">
+        <div class="row">
+            <div class="col-md-9">
+                <div class="tab-content" id="v-pills-tabContent">
+                    <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
+                        <div class="card">
+                            <form action="" method="post">
+                                {% csrf_token %}
+                                <div class="card-body">
+                                    <h6 class="card-title">Оформление заказа</h6>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                {{ form.user|as_crispy_field }}
+                                            </div>
+                                            <div class="form-group">
+                                                {{ form.quantity|as_crispy_field }}
+                                            </div>
+                                            <div class="form-group">
+                                                {{ form.size|as_crispy_field }}
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                {{ form.adress|as_crispy_field }}
+                                            </div>
+                                            <div class="form-group">
+                                                {{ form.status|as_crispy_field }}
+                                            </div>
+                                            <div class="form-group">
+                                                {{ form.period|as_crispy_field }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <button class="btn btn-primary">Создать</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}
