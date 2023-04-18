@@ -24,9 +24,15 @@ class ManagerCreateOrderView(CreateView):
     def form_valid(self, form):
         size = int(str(form.cleaned_data['size']))
         period = int(str(form.cleaned_data['period']))
-        price = size * period
-        form.instance.price = price
-        form.instance.status = m.OrderStatus.CREATE
+        quantity = int(str(form.cleaned_data['quantity']))
+        period2 = round(period*30)
+        if period2 > 180:
+            price = quantity * size * period2 / 1.5
+            form.instance.price = price
+        else:
+            price = quantity * size * period2
+            form.instance.price = price
+            form.instance.status = m.OrderStatus.CREATE
         return super().form_valid(form)
 
     def get_form_kwargs(self, ):
