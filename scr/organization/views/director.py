@@ -1,12 +1,23 @@
+from django.contrib.auth.models import Group
 from django.views.generic import UpdateView, CreateView, TemplateView, ListView
+from django.contrib.auth import get_user_model, authenticate
+from django.urls import reverse_lazy
+from organization.forms import CreateEmployeeForm
+User = get_user_model()
 
 
 class DirectorHomeView(TemplateView):
     template_name = 'director/home_director.html'
 
 
-class DirectorCreateEmployeeView(TemplateView):
+class DirectorCreateEmployeeView(CreateView):
     template_name = 'director/create_employee_director.html'
+    form_class = CreateEmployeeForm
+    success_url = reverse_lazy('director_list_employee_view')
+
+
+
+
 
 
 class DirectorListEmployeeView(TemplateView):
