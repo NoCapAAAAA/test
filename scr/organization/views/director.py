@@ -1,3 +1,5 @@
+import time
+
 from django.contrib.auth.models import Group
 from django.views.generic import UpdateView, CreateView, TemplateView, ListView
 from django.contrib.auth import get_user_model, authenticate
@@ -15,12 +17,8 @@ class DirectorCreateEmployeeView(CreateView):
     form_class = CreateEmployeeForm
     success_url = reverse_lazy('director_list_employee_view')
     model = User
-
     def form_valid(self, form):
-        groupe_name = str(form.cleaned_data['groups'][0])
-        if groupe_name == 'Менеджер':
-            group = Group.objects.get(name='Менеджер')
-            self.request.user.groups.add(group)
+        time.sleep(30)
         return super().form_valid(form)
 
 

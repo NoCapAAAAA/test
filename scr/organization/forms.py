@@ -2,7 +2,7 @@ from django.contrib.auth import get_user_model
 from django.contrib.auth import forms as auth_forms
 from django import forms
 from core import models as m
-
+from django.contrib.auth.forms import UserCreationForm
 user_model = get_user_model()
 
 """
@@ -69,23 +69,15 @@ class CreateOrderForm(forms.ModelForm):
 """
 
 
-class CreateEmployeeForm(auth_forms.UserCreationForm):
+class CreateEmployeeForm(UserCreationForm):
+
+    def save(self, commit=True):
+        user = super().save(commit=False)
+        if commit:
+            user.save()
+        return user
     class Meta:
         model = user_model
-        fields = [
-            'username', 'password1', 'password2', 'email', 'first_name', 'last_name', 'phone_number', 'gender',
-            'groups', 'middle_name',
-        ]
-        help_texts = {
-            'username': None,
-            'password1': None,
-            'password2': None,
-            'first_name': None,
-            'last_name': None,
-            'phone_number': None,
-            'gender': None,
-            'email': None,
-            'groups': None,
-        }
+        fields = '__all__'
 
 

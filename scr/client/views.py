@@ -5,6 +5,10 @@ from django.contrib.auth import get_user_model
 from django.urls import reverse_lazy
 from . import forms as f
 import core.models as m
+from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
+
+
 User = get_user_model()
 
 
@@ -46,7 +50,8 @@ class PasswordChangeView(UpdateView):
         return self.request.user
 
 
-class OrderCreateView(CreateView):
+class OrderCreateView(LoginRequiredMixin, CreateView):
+
     template_name = 'client_order_create.html'
     success_url = reverse_lazy('home')
     form_class = f.OrderCreateForm
