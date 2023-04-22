@@ -47,6 +47,7 @@ class OrderStatus(models.IntegerChoices):
 class AdressSirvice(models.Model):
     adress = models.CharField(verbose_name='Адрес сервиса', max_length=125, )
 
+
     def __str__(self):
         return f'{self.adress}'
 
