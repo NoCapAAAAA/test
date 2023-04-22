@@ -1,0 +1,90 @@
+{% extends 'base_client.html' %}
+{% load static %}
+{% block title %} Связаться с нами {% endblock %}
+{% block main %}
+{% load crispy_forms_tags %}
+        <div class="site__body">
+            <div class="page-header">
+                <div class="page-header__container container">
+
+                    <div class="page-header__title">
+                        <h1>Связаться с нами</h1>
+                    </div>
+                </div>
+            </div>
+            <div class="block">
+                <div class="container">
+                    <div class="card mb-0 contact-us">
+                        <div class="contact-us__map">
+                            <iframe src="https://yandex.ru/map-widget/v1/?um=constructor%3Affd6b5eb5706d57af7b3d0b7a5fffbecedadec6c9909ac233abc5aed2980219d&amp;source=constructor" width="364" height="269" frameborder="0"></iframe>
+                        </div>
+                        <div class="card-body">
+                            <div class="contact-us__container">
+                                <div class="row">
+                                    <div class="col-12 col-lg-6 pb-4 pb-lg-0">
+                                        <h4 class="contact-us__header card-title">Наш адресс</h4>
+                                        <div class="contact-us__address">
+                                            <p>
+                                                Бакунинская улица, 81с2, Москва, 105082<br>
+                                                E-mail: tire-storage@mail.ru<br>
+                                                Номер телефона: +7 (123)-456-78-90
+                                            </p>
+                                            <p>
+                                                <strong>Часы работы</strong><br>
+                                                Пн-Пт: с 8:00 до 22:00<br>
+                                                Суббота: с 9:00 до 21:00<br>
+                                                Воскресенье: с 10:00 до 20:00
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-lg-6">
+                                        <h4 class="contact-us__header card-title">Запрос на обратную связь</h4>
+                                        <form action="" method="post" class="container">
+                                            {% csrf_token %}
+                                            <div class="form-row">
+                                                <div class="form-group col-md-6">
+                                                    {{ form.name|as_crispy_field }}
+                                                </div>
+                                                <div class="form-group col-md-6">
+                                                    {{ form.email|as_crispy_field }}
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                {{ form.phone_number|as_crispy_field }}
+                                            </div>
+                                            <div class="form-group">
+                                                {{ form.msg|as_crispy_field }}
+                                            </div>
+
+                                            <input type="submit" value="Отправить" class="btn btn-primary my-2">
+                                        </form>
+<!--                                        <form>-->
+<!--                                            <div class="form-row">-->
+<!--                                                <div class="form-group col-md-6">-->
+<!--                                                    <label for="form-name">Ваше имя</label>-->
+<!--                                                    <input type="text" id="form-name" class="form-control" placeholder="Имя">-->
+<!--                                                </div>-->
+<!--                                                <div class="form-group col-md-6">-->
+<!--                                                    <label for="form-email">E-mail</label>-->
+<!--                                                    <input type="email" id="form-email" class="form-control" placeholder="E-mail адресс">-->
+<!--                                                </div>-->
+<!--                                            </div>-->
+<!--                                            <div class="form-group">-->
+<!--                                                <label for="form-subject">Тема вопроса</label>-->
+<!--                                                <input type="text" id="form-subject" class="form-control" placeholder="Тема вопроса">-->
+<!--                                            </div>-->
+<!--                                            <div class="form-group">-->
+<!--                                                <label for="form-message">Сообщение</label>-->
+<!--                                                <textarea id="form-message" class="form-control" rows="4"></textarea>-->
+<!--                                            </div>-->
+<!--                                            <button type="submit" class="btn btn-primary">Отправить</button>-->
+<!--                                        </form>-->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+{% endblock %}

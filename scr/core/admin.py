@@ -49,3 +49,11 @@ class AdressSirvice(admin.ModelAdmin):
 
     class Meta:
         model = m.AdressSirvice
+
+
+@admin.register(m.CallApplication)
+class CallApplication(admin.ModelAdmin):
+    list_display = [field.name for field in m.CallApplication._meta.fields]
+
+    class Meta:
+        model = m.CallApplication

@@ -95,3 +95,15 @@ class OrderStorage(models.Model):
     class Meta:
         verbose_name = 'Заказ'
         verbose_name_plural = 'Заказы'
+
+
+class CallApplication(models.Model):
+    name = models.CharField(max_length=50, verbose_name='Имя')
+    email = models.EmailField(verbose_name='Электронная почта')
+    phone_number = models.CharField(max_length=16, verbose_name='Номер телефона')
+    msg = models.TextField(verbose_name='Сообщение')
+
+    class Meta:
+        verbose_name = 'Обратная связь'
+        verbose_name_plural = 'Обратная связь'
+

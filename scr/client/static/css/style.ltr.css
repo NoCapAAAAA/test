@@ -6928,7 +6928,7 @@ html:not([dir=rtl]) .noUi-horizontal .noUi-origin {
 // .about-us
 */
 .about-us__image {
-  background-image: url("../images/aboutus.jpg");
+  background-image: url("/static/images/banners/89864.jpg");
   background-size: cover;
   background-position: bottom center;
   height: 500px;
