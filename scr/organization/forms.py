@@ -32,7 +32,7 @@ class SettingsProfile(auth_forms.UserChangeForm):
 
     class Meta:
         model = user_model
-        fields = ('username', 'email', 'last_name', 'first_name', 'middle_name', 'phone_number', 'gender', 'photo')
+        fields = ('username', 'email', 'last_name', 'first_name', 'middle_name', 'phone_number', 'gender', 'photo', 'groups')
         help_texts = {
             'username': None,
         }

@@ -2,20 +2,28 @@ from core import models as m
 from django.utils import timezone
 import datetime
 from django.contrib import messages
+from django.utils.decorators import method_decorator
 from organization import forms as f
 from service.filters import UserFilters, OrdersFilter
 from django.urls import reverse_lazy
 from django.contrib.auth import get_user_model
 from django.views.generic import UpdateView, CreateView, TemplateView, ListView
-
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from service.decorators import group_required
 User = get_user_model()
 
 
 class ManagerHomeView(TemplateView):
+    @method_decorator(group_required('Менеджер'))
+    def dispatch(self, request, *args, **kwargs):
+        return super().dispatch(request, *args, **kwargs)
     template_name = 'manager/home_manager.html'
 
 
-class ManagerCreateOrderView(CreateView):
+class ManagerCreateOrderView(UserPassesTestMixin, CreateView):
+    @method_decorator(group_required('Менеджер'))
+    def dispatch(self, request, *args, **kwargs):
+        return super().dispatch(request, *args, **kwargs)
     template_name = 'manager/create_order_manager.html'
     success_url = reverse_lazy('manager_orders_list_view')
     form_class = f.CreateOrderForm
@@ -44,6 +52,9 @@ class ManagerCreateOrderView(CreateView):
 
 
 class ManagerOrdersListView(ListView):
+    @method_decorator(group_required('Менеджер'))
+    def dispatch(self, request, *args, **kwargs):
+        return super().dispatch(request, *args, **kwargs)
     template_name = 'manager/list_orders_manager.html'
     model = m.OrderStorage
     paginate_by = 7
@@ -98,6 +109,9 @@ class ManagerOrdersListView(ListView):
 
 
 class ManagerDetailOrderView(UpdateView):
+    @method_decorator(group_required('Менеджер'))
+    def dispatch(self, request, *args, **kwargs):
+        return super().dispatch(request, *args, **kwargs)
     template_name = 'manager/detail_order_manager.html'
     model = m.OrderStorage
     form_class = f.UpdateOrderDir
@@ -114,6 +128,9 @@ class ManagerDetailOrderView(UpdateView):
 
 
 class ManagerCreateUserView(CreateView):
+    @method_decorator(group_required('Менеджер'))
+    def dispatch(self, request, *args, **kwargs):
+        return super().dispatch(request, *args, **kwargs)
     template_name = 'manager/create_user_manager.html'
     success_url = reverse_lazy('manager_users_list_view')
     form_class = f.CreateUserForm
@@ -122,6 +139,9 @@ class ManagerCreateUserView(CreateView):
 # Список пользователей с возможностью поиска по полю 'id' и филдьтрацией по полю 'gender',
 # так же предусмотрена пагинация в 7 объектов
 class ManagerUsersListView(ListView):
+    @method_decorator(group_required('Менеджер'))
+    def dispatch(self, request, *args, **kwargs):
+        return super().dispatch(request, *args, **kwargs)
     template_name = 'manager/list_users_manager.html'
     model = User
     paginate_by = 7
@@ -139,6 +159,9 @@ class ManagerUsersListView(ListView):
 
 
 class ManagerDetailUserView(UpdateView):
+    @method_decorator(group_required('Менеджер'))
+    def dispatch(self, request, *args, **kwargs):
+        return super().dispatch(request, *args, **kwargs)
     template_name = 'manager/detail_user_manager.html'
     model = User
     form_class = f.SettingsProfile

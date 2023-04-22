@@ -211,3 +211,29 @@ class PassChange(UpdateView):
 #     response['Content-Disposition'] = 'attachment; filename=' + docx_title
 #     response['Content-Length'] = length
 #     return response
+
+
+<div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                {{ form.first_name|as_crispy_field }}
+                                            </div>
+                                            <div class="form-group">
+                                                {{ form.last_name|as_crispy_field }}
+                                            </div>
+                                            <div class="form-group">
+                                                {{ form.middle_name|as_crispy_field }}
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                {{ form.username|as_crispy_field }}
+                                            </div>
+                                            <div class="form-group">
+                                                {{ form.phone_number|as_crispy_field }}
+                                            </div>
+                                            <div class="form-group">
+                                                {{ form.gender|as_crispy_field }}
+                                            </div>
+                                        </div>
+                                    </div>
