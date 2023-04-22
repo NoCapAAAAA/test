@@ -1,6 +1,6 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import get_object_or_404, redirect, render
-from django.views.generic import TemplateView, UpdateView, DetailView, ListView, CreateView
+from django.views.generic import TemplateView, UpdateView, DetailView, ListView, CreateView, FormView
 from django.contrib.auth import get_user_model
 from django.urls import reverse_lazy
 from . import forms as f
@@ -17,17 +17,20 @@ class HomeView(TemplateView):
 
 
 class AboutView(TemplateView):
-    template_name = 'clientpart/about_us.html'
+    template_name = 'client_about_us.html'
 
 
-class ContactView(TemplateView):
-    template_name = 'clientpart/contact.html'
+class ContactView(CreateView):
+    template_name = 'client_contact_us.html'
+    model = m.CallApplication
+    success_url = reverse_lazy('home')
+    fields = '__all__'
 
 
 class UserEditView(UpdateView):
     template_name = 'client_edit_profile.html'
     form_class = f.UserEditForm
-    success_url = reverse_lazy('user_edit')
+    success_url = reverse_lazy('client_edit_profile')
 
     def get_object(self, **kwargs):
         return self.request.user

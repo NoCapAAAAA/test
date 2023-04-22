@@ -3,6 +3,8 @@ from . import views as v
 
 urlpatterns = [
     path('', v.HomeView.as_view(), name='home'),
+    path('about/', v.AboutView.as_view(), name='about'),
+    path('contact/', v.ContactView.as_view(), name='contact'),
     path('profile/', v.UserDetailView.as_view(), name='client_detail_profile'),
     path('profile-edit/', v.UserEditView.as_view(), name='client_edit_profile'),
     path('profile-password-reset/', v.PasswordChangeView.as_view(), name='client_pass_reset'),

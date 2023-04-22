@@ -1,0 +1,58 @@
+{% extends 'base_client.html' %}
+{% load static %}
+{% block title %} О нас {% endblock %}
+{% block main %}
+<div class="block about-us">
+    <div class="about-us__image">
+    </div>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-12 col-xl-10">
+                <div class="about-us__body">
+                    <h1 class="about-us__title">О нас</h1>
+                    <div class="about-us__text typography">
+                        <p>
+                            Наша компания занимается хранением шин с 1999 года.
+                            За этот период в общей сложости мы хранили 1000000 шин.
+                            Все наши клиенты доверяют нам так как мы стандарт качества и надежности
+                        </p>
+                        <p>
+                            Технолигии хранения шин именно у нас позволяют вам не беспокоится о сохранности шин,
+                            так как мы используем саммые современные методы хранение. Доверьтесь нам как доверилось 10000 человек.
+                        </p>
+                    </div>
+                    <div class="about-us__team">
+                        <h2 class="about-us__team-title">Наша команда</h2>
+                        <div class="about-us__team-subtitle text-muted">Есть вопросы к нашей команде?<br><a href="{% url 'contact' %}">Свяжитесь с нами</a> и мы дадим обратную связь!</div>
+                        <div class="about-us__teammates teammates">
+                            <div class="owl-carousel">
+                                <div class="teammates__item teammate">
+                                    <div class="teammate__avatar">
+                                        <img src="{% static 'images/teammates/3.jpg' %} " alt="">
+                                    </div>
+                                    <div class="teammate__name">Иван Иванов</div>
+                                    <div class="teammate__position text-muted">Генеральный директор</div>
+                                </div>
+                                <div class="teammates__item teammate">
+                                    <div class="teammate__avatar">
+                                        <img src="{% static 'images/teammates/2.jpg' %} " alt="">
+                                    </div>
+                                    <div class="teammate__name">Пётр Петров</div>
+                                    <div class="teammate__position text-muted">Исполнительный директор</div>
+                                </div>
+                                <div class="teammates__item teammate">
+                                    <div class="teammate__avatar">
+                                        <img src="{% static 'images/teammates/1.jpg' %} " alt="">
+                                    </div>
+                                    <div class="teammate__name">Анна Цуканова</div>
+                                    <div class="teammate__position text-muted">Секретарь</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
