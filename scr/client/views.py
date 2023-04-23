@@ -61,12 +61,13 @@ class OrderCreateView(LoginRequiredMixin, CreateView):
     queryset = m.OrderStorage.objects.all()
 
     def form_valid(self, form):
-        size = int(str(form.cleaned_data['size']))
-        period = int(str(form.cleaned_data['period']))
-        price = size * period
-        form.instance.price = price
-        form.instance.user = self.request.user
-        form.instance.status = m.OrderStatus.CREATE
+        if form.is_valid():
+            size = int(str(form.cleaned_data['size']))
+            period = int(str(form.cleaned_data['period']))
+            price = size * period
+            form.instance.price = price
+            form.instance.user = self.request.user
+            form.instance.status = m.OrderStatus.CREATE
         return super().form_valid(form)
 
     def get_form_kwargs(self, ):

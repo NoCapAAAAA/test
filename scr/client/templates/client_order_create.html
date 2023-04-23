@@ -1,12 +1,39 @@
 {% extends 'base_client.html' %}
 {% load static %}
 {% block title %} Оформление заказа {% endblock %}
-{% load crispy_forms_tags %}
-
 {% block main %}
-<form action="" method="post">
-    {% csrf_token %}
-    {{ form }}
-    <input type="submit" value="Submit">
-</form>
+{% load crispy_forms_tags %}
+<div class="checkout block">
+    <div class="container">
+        <form action="" method="post">
+        {% csrf_token %}
+
+
+            <div class="card mb-lg-0">
+                <div class="card-body">
+                    <h3 class="card-title">Детали заказа</h3>
+                    <div class="form-group">
+                        {{ form.size|as_crispy_field }}
+                    </div>
+                    <div class="form-group">
+                        {{ form.quantity|as_crispy_field }}
+                    </div>
+                    <div class="form-group">
+                        {{ form.period|as_crispy_field }}
+                    </div>
+                    <div class="form-group">
+                        {{ form.adress|as_crispy_field }}
+                    </div>
+                </div>
+                            {{ form.user|as_crispy_field }}
+            {{ form.is_payed|as_crispy_field }}
+            {{ form.status|as_crispy_field }}
+            {{ form.payed_at|as_crispy_field }}
+            {{ form.price|as_crispy_field }}
+
+            </div>
+            <button type="submit" class="btn btn-primary btn-xl btn-block">Оформить заказ</button>
+        </form>
+    </div>
+</div>
 {% endblock %}

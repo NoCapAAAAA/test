@@ -26,6 +26,10 @@ class OrderCreateForm(forms.ModelForm):
     status = forms.IntegerField(widget=forms.HiddenInput())
     payed_at = forms.DateTimeField(widget=forms.HiddenInput(), required=False)
     price = forms.IntegerField(widget=forms.HiddenInput(), required=False)
+    # size = forms.models.ChoiceField(required=True)
+    # quantity = forms.models.ChoiceField(required=True)
+    # period = forms.models.ChoiceField(required=True)
+    # adress = forms.models.ChoiceField(required=True)
 
     class Meta:
         model = m.OrderStorage

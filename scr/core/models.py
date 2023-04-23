@@ -1,3 +1,4 @@
+from PIL.ImImagePlugin import number
 from django.db import models
 from django.urls import reverse
 from django.utils import timezone
@@ -44,8 +45,12 @@ class OrderStatus(models.IntegerChoices):
     FINISH = 3, 'Завершен'
 
 
+class PlaceHold(models.Model):
+    number = models.IntegerField(verbose_name='Место хранения', default=True, null=True)
+
 class AdressSirvice(models.Model):
     adress = models.CharField(verbose_name='Адрес сервиса', max_length=125, )
+    placehold = models.ManyToManyField(PlaceHold, verbose_name='Место хранения',)
 
 
     def __str__(self):
@@ -58,14 +63,16 @@ class AdressSirvice(models.Model):
 
 class OrderStorage(models.Model):
     user = models.ForeignKey(to=User, verbose_name='User', on_delete=models.CASCADE)
-    quantity = models.ForeignKey(verbose_name='Количество', blank=True, null=True, to=QuantityOfTires, on_delete=models.CASCADE)
-    size = models.ForeignKey(verbose_name='Размер', blank=True, null=True, to=TireSize, on_delete=models.CASCADE)
-    period = models.ForeignKey(verbose_name='Период', blank=True, null=True, to=PeriodOfStorage, on_delete=models.CASCADE)
-    adress = models.ForeignKey(verbose_name='Адрес', blank=True, null=True, to=AdressSirvice, on_delete=models.CASCADE)
+    quantity = models.ForeignKey(verbose_name='Количество', to=QuantityOfTires, on_delete=models.CASCADE)
+    size = models.ForeignKey(verbose_name='Размер', to=TireSize, on_delete=models.CASCADE)
+    period = models.ForeignKey(verbose_name='Период', to=PeriodOfStorage, on_delete=models.CASCADE)
+    adress = models.ForeignKey(verbose_name='Адрес', to=AdressSirvice, on_delete=models.CASCADE)
     status = models.IntegerField(verbose_name='Статус', choices=OrderStatus.choices, default=0)
     price = models.IntegerField(verbose_name='Цена', default=0, blank=True, null=True)
     is_payed = models.BooleanField(verbose_name='Оплачен', default=False)
     payed_at = models.DateTimeField(verbose_name='Дата оплаты', blank=True, null=True)
+    datastart = models.DateTimeField(verbose_name='Дата начала', blank=True, null=True)
+    datafinish = models.DateTimeField(verbose_name='Дата окончания', blank=True, null=True)
     created_at = models.DateTimeField(verbose_name='Создан', auto_now_add=True)
     updated_at = models.DateTimeField(verbose_name='Обновлён', auto_now=True)
 
