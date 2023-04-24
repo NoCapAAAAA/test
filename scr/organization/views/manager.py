@@ -1,6 +1,4 @@
 from core import models as m
-from django.utils import timezone
-import datetime
 from django.contrib import messages
 from django.utils.decorators import method_decorator
 from organization import forms as f

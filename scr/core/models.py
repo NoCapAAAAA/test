@@ -45,13 +45,26 @@ class OrderStatus(models.IntegerChoices):
     FINISH = 3, 'Завершен'
 
 
+class PlaceStatus(models.IntegerChoices):
+    FREE = 0, 'Свободен'
+    BUSY = 1, 'Занят'
+
+
 class PlaceHold(models.Model):
-    number = models.IntegerField(verbose_name='Место хранения', default=True, null=True)
+    number = models.CharField(verbose_name='Место хранения', max_length=125, )
+    status = models.IntegerField(verbose_name='Статус', choices=PlaceStatus.choices)
+
+    def __str__(self):
+        return f'{self.number}'
+
+    class Meta:
+        verbose_name = 'Место хранения'
+        verbose_name_plural = 'Маста хранения'
+
 
 class AdressSirvice(models.Model):
     adress = models.CharField(verbose_name='Адрес сервиса', max_length=125, )
     placehold = models.ManyToManyField(PlaceHold, verbose_name='Место хранения',)
-
 
     def __str__(self):
         return f'{self.adress}'
