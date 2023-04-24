@@ -1,5 +1,5 @@
 import time
-
+from service.filters import UsersFilterDirector
 from django.contrib.auth.models import Group
 from django.utils.decorators import method_decorator
 from django.views.generic import UpdateView, CreateView, TemplateView, ListView
@@ -17,17 +17,24 @@ class DirectorHomeView(TemplateView):
     template_name = 'director/home_director.html'
 
 
-class DirectorCreateEmployeeView(CreateView):
+class DirectorUsersListView(ListView):
     @method_decorator(group_required('Директор'))
     def dispatch(self, request, *args, **kwargs):
         return super().dispatch(request, *args, **kwargs)
-    template_name = 'director/create_employee_director.html'
-    form_class = CreateEmployeeForm
-    success_url = reverse_lazy('director_list_employee_view')
+    template_name = 'director/users_list_director.html'
     model = User
-    def form_valid(self, form):
-        time.sleep(30)
-        return super().form_valid(form)
+    paginate_by = 7
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['users'] = User.objects.all()
+        context['filter'] = UsersFilterDirector(self.request.GET, queryset=self.get_queryset())
+        return context
+
+    def get_queryset(self, **kwargs):
+        search_results = UsersFilterDirector(self.request.GET, self.queryset)
+        self.no_search_result = True if not search_results.qs else False
+        return search_results.qs.distinct()
 
 
 class DirectorListEmployeeView(TemplateView):

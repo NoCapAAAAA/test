@@ -11,6 +11,7 @@ from service.decorators import group_required
 User = get_user_model()
 
 
+
 class ManagerHomeView(TemplateView):
     @method_decorator(group_required('Менеджер'))
     def dispatch(self, request, *args, **kwargs):
