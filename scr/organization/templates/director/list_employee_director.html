@@ -4,4 +4,7 @@
 {% block main %}
 !!!Директор!!!
 Список сотрудников
+{% for users in employees %}
+{{ users.pk }}
+{% endfor %}
 {% endblock %}

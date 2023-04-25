@@ -5,7 +5,8 @@ from .views import manager as manager_views
 urlpatterns = [
     # Директор
     path('director/', director_views.DirectorHomeView.as_view(), name='director_home'),
-    path('director/create-empl', director_views.DirectorUsersListView.as_view(), name='director_create_employee'),
+    path('director/user-list/', director_views.DirectorUsersListView.as_view(), name='director_create_employee'),
+    path('director/user-list/<int:pk>/', director_views.DirectorUpdateUserView.as_view(), name='director_get_user_permissions'),
     path('director/report-orders', director_views.DirectorOrdersReportView.as_view(), name='director_orders_report_view'),
     path('director/report-users', director_views.DirectorUsersReportView.as_view(), name='director_users_report_view'),
     path('director/list-empl', director_views.DirectorListEmployeeView.as_view(), name='director_list_employee_view'),
