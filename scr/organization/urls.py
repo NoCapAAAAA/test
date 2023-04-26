@@ -12,6 +12,8 @@ urlpatterns = [
     path('director/list-empl/', director_views.DirectorListEmployeeView.as_view(), name='director_list_employee_view'),
     path('director/list-empl/<int:pk>/', director_views.DirectorEmployeeDetailView.as_view(), name='director_detail_employee_view'),
 
+    # Test
+
     # Менеджер
     path('manager/', manager_views.ManagerHomeView.as_view(), name='manager_home'),
 
