@@ -19,7 +19,7 @@ class ManagerHomeView(TemplateView):
     template_name = 'manager/home_manager.html'
 
 
-class ManagerCreateOrderView(UserPassesTestMixin, CreateView):
+class ManagerCreateOrderView(CreateView):
     @method_decorator(group_required('Менеджер'))
     def dispatch(self, request, *args, **kwargs):
         return super().dispatch(request, *args, **kwargs)

@@ -9,7 +9,8 @@ urlpatterns = [
     path('director/user-list/<int:pk>/', director_views.DirectorUpdateUserView.as_view(), name='director_get_user_permissions'),
     path('director/report-orders', director_views.DirectorOrdersReportView.as_view(), name='director_orders_report_view'),
     path('director/report-users', director_views.DirectorUsersReportView.as_view(), name='director_users_report_view'),
-    path('director/list-empl', director_views.DirectorListEmployeeView.as_view(), name='director_list_employee_view'),
+    path('director/list-empl/', director_views.DirectorListEmployeeView.as_view(), name='director_list_employee_view'),
+    path('director/list-empl/<int:pk>/', director_views.DirectorEmployeeDetailView.as_view(), name='director_detail_employee_view'),
 
     # Менеджер
     path('manager/', manager_views.ManagerHomeView.as_view(), name='manager_home'),

@@ -9,7 +9,7 @@
             <div class="col-md-9">
                 <div class="tab-content" id="v-pills-tabContent">
                     <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
-                        <a href="{% url 'director_create_employee' %}" class="btn btn-xs btn-secondary">Назад к списку</a>
+                        <a href="{% url 'director_list_employee_view' %}" class="btn btn-xs btn-secondary">Назад к списку</a>
                         <div class="card">
                             <form action="" method="post">
                                 {% csrf_token %}

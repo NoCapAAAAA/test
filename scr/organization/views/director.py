@@ -58,6 +58,38 @@ class DirectorUpdateUserView(UpdateView):
         return reverse_lazy('director_get_user_permissions', kwargs={'pk': self.kwargs['pk']})
 
 
+class DirectorEmployeeDetailView(UpdateView):
+    @method_decorator(group_required('Директор'))
+    def dispatch(self, request, *args, **kwargs):
+        return super().dispatch(request, *args, **kwargs)
+    template_name = 'director/detail_employee_director.html'
+    model = User
+    form_class = f.SettingsProfile
+
+    def form_valid(self, form):
+        user = form.save(commit=False)
+        user.groups.clear()  # очищаем группы пользователя
+        groups = self.request.POST.getlist('groups')  # получаем список выбранных групп
+        for group_id in groups:
+            group = Group.objects.get(id=group_id)
+            user.groups.add(group)  # добавляем пользователя в группы
+        return super().form_valid(form)
+
+    def post(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        group_id = request.POST.get('group_id')
+        if group_id:
+            group = Group.objects.get(id=group_id)
+            self.object.groups.remove(group)
+        return super().post(request, *args, **kwargs)
+
+    def get_queryset(self):
+        return User.objects.filter(pk=self.kwargs['pk'])
+
+    def get_success_url(self):
+        return reverse_lazy('director_detail_employee_view', kwargs={'pk': self.kwargs['pk']})
+
+
 class DirectorListEmployeeView(ListView):
     @method_decorator(group_required('Директор'))
     def dispatch(self, request, *args, **kwargs):
