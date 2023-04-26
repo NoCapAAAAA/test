@@ -147,7 +147,7 @@ class PassChange(UpdateView):
     def get_object(self):
         return self.request.user
 
-
+##
 # def TestDocument(request):
 #     locale.setlocale(
 #         category=locale.LC_ALL,

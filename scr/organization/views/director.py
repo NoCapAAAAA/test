@@ -1,4 +1,5 @@
 import time
+from core.models import OrderStorage
 from django.contrib import messages
 from service.filters import UsersFilterDirector
 from django.contrib.auth.models import Group
@@ -11,6 +12,10 @@ from organization.forms import CreateEmployeeForm
 from service.decorators import group_required
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import get_user_model
+from django.views.generic import TemplateView
+from django.http import JsonResponse
+from django.db.models.functions import ExtractYear, ExtractMonth
+from django.db.models import Count
 User = get_user_model()
 
 
@@ -19,6 +24,37 @@ class DirectorHomeView(TemplateView):
     def dispatch(self, request, *args, **kwargs):
         return super().dispatch(request, *args, **kwargs)
     template_name = 'director/home_director.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        # Get filter options
+        grouped_purchases = OrderStorage.objects.annotate(year=ExtractYear("created_at")).values("year").order_by("-year").distinct()
+        options = [purchase["year"] for purchase in grouped_purchases]
+        context["filter_options"] = options
+
+        # Get sales data for selected year
+        year = self.request.GET.get("year")
+        if year:
+            purchases = Purchase.objects.filter(time__year=year)
+            grouped_purchases = purchases.annotate(month=ExtractMonth("created_at")).values("month").annotate(count=Count("id")).values("month", "count").order_by("month")
+            sales_dict = get_year_dict()
+            for group in grouped_purchases:
+                sales_dict[months[group["month"]-1]] = group["count"]
+            context["sales_data"] = {
+                "title": f"Sales in {year}",
+                "data": {
+                    "labels": list(sales_dict.keys()),
+                    "datasets": [{
+                        "label": "Number of Purchases",
+                        "backgroundColor": colorPrimary,
+                        "borderColor": colorPrimary,
+                        "data": list(sales_dict.values()),
+                    }]
+                },
+            }
+
+        return context
 
 
 class DirectorUsersListView(ListView):
