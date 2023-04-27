@@ -16,6 +16,11 @@ from django.views.generic import TemplateView
 from django.http import JsonResponse
 from django.db.models.functions import ExtractYear, ExtractMonth
 from django.db.models import Count
+from django.http import HttpResponse
+from docx import Document
+from datetime import datetime, date
+import locale
+from io import BytesIO
 User = get_user_model()
 
 
@@ -144,6 +149,82 @@ class DirectorOrdersReportView(TemplateView):
     def dispatch(self, request, *args, **kwargs):
         return super().dispatch(request, *args, **kwargs)
     template_name = 'director/orders_report_director.html'
+    model = OrderStorage
+
+    def get(self, request, *args, **kwargs):
+        date_from = request.GET.get('date_from')
+        date_until = request.GET.get('date_until')
+        records = OrderStorage.objects.filter(created_at__range=[date_from, date_until])
+
+        return super().get(request, *args, **kwargs, records=records)
+
+    def gen_report_(self):
+        locale.setlocale(
+            category=locale.LC_ALL,
+            locale="Russian"  # Note: do not use "de_DE" as it doesn't work
+        )
+        current_datetime = datetime.now()
+        str_current_datetime = str(current_datetime)
+        document = Document()
+        docx_title = "report" + str_current_datetime + ".docx"
+        # ---- Cover Letter ----
+        document.add_paragraph()
+        document.add_paragraph("%s" % date.today().strftime('%B %d, %Y'))
+
+        document.add_paragraph('Отчёт о заказах')
+        qs2 = self.records.count()
+        qs2count = qs2.count() + 1
+        table = document.add_table(rows=qs2count, cols=8)
+        table.style = 'Table Grid'
+        table.cell(0, 0).text = 'Номер заказа'
+        table.cell(0, 1).text = 'Клиент'
+        table.cell(0, 2).text = 'Размер шины'
+        table.cell(0, 3).text = 'Период хранения'
+        table.cell(0, 4).text = 'Адрес сервиса'
+        table.cell(0, 5).text = 'Статус заказа'
+        table.cell(0, 6).text = 'Стоимость заказа'
+        table.cell(0, 7).text = 'Оплачен'
+
+        # Creating a table object
+
+        for order in records:
+
+            qs2 = m.OrderStorage.objects.all().order_by('pk')
+            row = qs2.count()
+            table.cell(row, 0).text = str(order.pk)
+            table.cell(row, 1).text = str(order.user)
+            table.cell(row, 2).text = str(order.size)
+            table.cell(row, 3).text = str(order.period)
+            if order.adress == None:
+                order.adress = "---"
+            table.cell(row, 4).text = str(order.adress)
+            table.cell(row, 5).text = str(order.get_status_display())
+            table.cell(row, 6).text = str(order.price)
+            if order.is_payed == True:
+                order.is_payed = "Да"
+            else:
+                order.is_payed = "Нет"
+            table.cell(row, 7).text = str(order.is_payed)
+
+        document.add_page_break()
+
+        # Prepare document for download
+        # -----------------------------
+        f = BytesIO()
+        document.save(f)
+        length = f.tell()
+        f.seek(0)
+        response = HttpResponse(
+            f.getvalue(),
+            content_type='application/vnd.openxmlformats-officedocument.wordprocessingml.document'
+        )
+        response['Content-Disposition'] = 'attachment; filename=' + docx_title
+        response['Content-Length'] = length
+        return response
+
+
+
+
 
 
 class DirectorUsersReportView(TemplateView):
@@ -151,5 +232,69 @@ class DirectorUsersReportView(TemplateView):
     def dispatch(self, request, *args, **kwargs):
         return super().dispatch(request, *args, **kwargs)
     template_name = 'director/users_report_director.html'
+##
+def TestDocument(request):
+    locale.setlocale(
+        category=locale.LC_ALL,
+        locale="Russian"  # Note: do not use "de_DE" as it doesn't work
+    )
+    current_datetime = datetime.now()
+    str_current_datetime = str(current_datetime)
+    document = Document()
+    docx_title = "report" + str_current_datetime + ".docx"
+    # ---- Cover Letter ----
+    document.add_paragraph()
+    document.add_paragraph("%s" % date.today().strftime('%B %d, %Y'))
+
+    document.add_paragraph('Отчёт о заказах')
+    qs2 = m.OrderStorage.objects.all().order_by('pk')
+    qs2count = qs2.count() + 1
+    table = document.add_table(rows=qs2count, cols=8)
+    table.style = 'Table Grid'
+    table.cell(0, 0).text = 'Номер заказа'
+    table.cell(0, 1).text = 'Клиент'
+    table.cell(0, 2).text = 'Размер шины'
+    table.cell(0, 3).text = 'Период хранения'
+    table.cell(0, 4).text = 'Адрес сервиса'
+    table.cell(0, 5).text = 'Статус заказа'
+    table.cell(0, 6).text = 'Стоимость заказа'
+    table.cell(0, 7).text = 'Оплачен'
+
+    # Creating a table object
+
+    for order in m.OrderStorage.objects.all().order_by('pk'):
+
+        qs2 = m.OrderStorage.objects.all().order_by('pk')
+        row = qs2.count()
+        table.cell(row, 0).text = str(order.pk)
+        table.cell(row, 1).text = str(order.user)
+        table.cell(row, 2).text = str(order.size)
+        table.cell(row, 3).text = str(order.period)
+        if order.adress == None:
+            order.adress = "---"
+        table.cell(row, 4).text = str(order.adress)
+        table.cell(row, 5).text = str(order.get_status_display())
+        table.cell(row, 6).text = str(order.price)
+        if order.is_payed == True:
+            order.is_payed = "Да"
+        else:
+            order.is_payed = "Нет"
+        table.cell(row, 7).text = str(order.is_payed)
+
+    document.add_page_break()
+
+    # Prepare document for download
+    # -----------------------------
+    f = BytesIO()
+    document.save(f)
+    length = f.tell()
+    f.seek(0)
+    response = HttpResponse(
+        f.getvalue(),
+        content_type='application/vnd.openxmlformats-officedocument.wordprocessingml.document'
+    )
+    response['Content-Disposition'] = 'attachment; filename=' + docx_title
+    response['Content-Length'] = length
+    return response
 
 
