@@ -1,0 +1,12 @@
+asgiref==3.6.0
+crispy-bootstrap4==2022.1
+Django==4.2
+django-bootstrap-form==3.4
+django-crispy-forms==2.0
+django-filter==23.1
+lxml==4.9.2
+Pillow==9.5.0
+pipfreeze==2.0.3
+python-docx==0.8.11
+sqlparse==0.4.4
+tzdata==2023.3

@@ -1,13 +1,1 @@
-{% extends 'director/base_director.html' %}
-{% load static %}
-{% block title %} Гланая {% endblock %}
-{% block main %}
-!!!Директор!!!
-Создание отчёта по заказам
 
-<form action="" method="get" class="my-4 ">
-    <input type="date" name="date_from" value="{{ date_from }}" id="date_from">
-    <input type="date" name="date_until" value="{{ date_until }}" id="date_until">
-    <input type="submit" value="Генерировать" class="btn btn-primary">
-</form>
-{% endblock %}
