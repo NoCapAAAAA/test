@@ -12,10 +12,12 @@ INSTALLED_APPS = [
     # main
     'django.contrib.admin',
     'django.contrib.auth',
+    'django.contrib.sites',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
     # apps
     'core',
     'authentication',
@@ -25,8 +27,10 @@ INSTALLED_APPS = [
     'crispy_forms',
     'crispy_bootstrap4',
     'django_filters',
-    'bootstrapform'
+    'bootstrapform',
+    'captcha',
 ]
+SITE_ID = 1
 AUTH_USER_MODEL = 'authentication.User'
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -111,3 +115,21 @@ MEDIA_ROOT = BASE_DIR / 'media'
 LOGIN_REDIRECT_URL = reverse_lazy('home')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+RECAPTCHA_PUBLIC_KEY = '6Lf50v8kAAAAAPvQJ0hE7sZkKplSaa7EtTY0I4ZS'
+RECAPTCHA_PRIVATE_KEY = '6Lf50v8kAAAAAIKE9hiNEBLZvKalh5vz5Od_f0dv'
+#txzpwuoyqjwytmok
+# Email settings
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = '587'
+EMAIL_USE_TLS = True
+
+EMAIL_HOST_USER = 'arttyyom@gmail.com'
+EMAIL_HOST_PASSWORD = 'txzpwuoyqjwytmok'
+
+EMAIL_SERVER = EMAIL_HOST_USER
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+EMAIL_ADMIN = ['arttyyom@yandex.ru']
