@@ -13,7 +13,8 @@ urlpatterns = [
     path('director/list-empl/<int:pk>/', director_views.DirectorEmployeeDetailView.as_view(), name='director_detail_employee_view'),
 
     # Test
-
+    path("director/filter-options/", director_views.get_filter_options, name="chart-filter-options"),
+    path("director/<int:year>/", director_views.get_sales_chart, name="chart-sales"),
     # Менеджер
     path('manager/', manager_views.ManagerHomeView.as_view(), name='manager_home'),
     path('manager/order-crete', manager_views.ManagerCreateOrderView.as_view(), name='manager_create_order_view'),
