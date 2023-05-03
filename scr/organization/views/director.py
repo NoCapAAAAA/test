@@ -190,7 +190,10 @@ def TestDocument(request):
         else:
             order.is_payed = "Нет"
         table.cell(row, 7).text = str(order.is_payed)
+    total_price = OrderStorage.objects.filter(is_payed=True, status=m.OrderStatus.FINISH).aggregate(Sum('price'))[
+        'price__sum']
 
+    document.add_paragraph('Общая стоимость: '+ str(total_price))
     document.add_page_break()
 
     # Prepare document for download

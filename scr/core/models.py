@@ -81,7 +81,7 @@ class OrderStorage(models.Model):
     period = models.ForeignKey(verbose_name='Период', to=PeriodOfStorage, on_delete=models.CASCADE)
     adress = models.ForeignKey(verbose_name='Адрес', to=AdressSirvice, on_delete=models.CASCADE)
     status = models.IntegerField(verbose_name='Статус', choices=OrderStatus.choices, default=0)
-    price = models.IntegerField(verbose_name='Цена', default=0, blank=True, null=True)
+    price = models.DecimalField(max_digits=10, decimal_places=2, default=0)
     is_payed = models.BooleanField(verbose_name='Оплачен', default=False)
     payed_at = models.DateTimeField(verbose_name='Дата оплаты', blank=True, null=True)
     datastart = models.DateTimeField(verbose_name='Дата начала', blank=True, null=True)
