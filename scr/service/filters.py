@@ -4,8 +4,6 @@ from django.contrib.auth import get_user_model
 from authentication.models import User as AUserModel
 User = get_user_model()
 
-#Настройка фильтров
-
 
 class UserFilters(django_filters.FilterSet):
 

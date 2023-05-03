@@ -6,14 +6,13 @@ from organization import forms as f
 from django.utils.decorators import method_decorator
 from django.views.generic import UpdateView,ListView
 from django.urls import reverse_lazy
-from organization.forms import CreateEmployeeForm
 from service.decorators import group_required
 from django.contrib.auth import get_user_model
+from django.db.models import Sum
 from django.views.generic import TemplateView
-from django.db.models.functions import ExtractYear, ExtractMonth
-from django.db.models import Count
 from django.http import HttpResponse
 from docx import *
+from django.utils import timezone
 from io import BytesIO
 from datetime import datetime, date
 import locale
@@ -22,11 +21,31 @@ User = get_user_model()
 
 
 class DirectorHomeView(TemplateView):
-    @method_decorator(group_required('Директор'))
-    def dispatch(self, request, *args, **kwargs):
-        return super().dispatch(request, *args, **kwargs)
-
     template_name = 'director/home_director.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        last_week = timezone.now() - timezone.timedelta(days=7)
+        context['orders'] = OrderStorage.objects.count()
+        context['lastweakusers'] = User.objects.filter(date_joined__gte=last_week).count()
+        context['lastweakorders'] = OrderStorage.objects.filter(created_at__gte=last_week).count()
+        context['instorageorders'] = OrderStorage.objects.filter(status=m.OrderStatus.STORAGE).count()
+        context['finishorders'] = OrderStorage.objects.filter(status=m.OrderStatus.FINISH).count()
+        last_month = timezone.now() - timezone.timedelta(days=30)
+        context['totalpriceorderlastmonth'] = OrderStorage.objects.filter(
+            is_payed=True,
+            status=m.OrderStatus.FINISH,
+            created_at__gte=last_month
+        ).aggregate(Sum('price'))['price__sum']
+        context['totalpriceorderyear'] = OrderStorage.objects.filter(is_payed=True, status=m.OrderStatus.FINISH).aggregate(Sum('price'))['price__sum']
+        last_year = timezone.now() - timezone.timedelta(days=365)
+        context['totalpriceorderlastyear'] = OrderStorage.objects.filter(
+            is_payed=True,
+            status=m.OrderStatus.FINISH,
+            created_at__year=last_year.year - 1
+        ).aggregate(Sum('price'))['price__sum']
+        context['callaplication'] = m.CallApplication.objects.order_by('-pk')[:5]
+        return context
 
 
 

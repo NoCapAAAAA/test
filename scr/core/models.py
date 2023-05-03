@@ -119,12 +119,14 @@ class OrderStorage(models.Model):
 
 
 class CallApplication(models.Model):
-    name = models.CharField(max_length=50, verbose_name='Имя')
+
+    first_name = models.CharField(max_length=50, verbose_name='Имя')
+    last_name = models.CharField(max_length=50, verbose_name='Фамилия')
     email = models.EmailField(verbose_name='Электронная почта')
     phone_number = models.CharField(max_length=16, verbose_name='Номер телефона')
+    topic = models.CharField(max_length=50, verbose_name='Тема обращения')
     msg = models.TextField(verbose_name='Сообщение')
 
     class Meta:
         verbose_name = 'Обратная связь'
         verbose_name_plural = 'Обратная связь'
-
