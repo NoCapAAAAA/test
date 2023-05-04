@@ -67,7 +67,6 @@ class UpdateOrderDir(forms.ModelForm):
         self.fields['quantity'].disabled = True
 
 
-
 class CreateOrderForm(forms.ModelForm):
     price = forms.IntegerField(widget=forms.HiddenInput(), required=False)
     user = forms.ModelChoiceField(queryset=get_user_model().objects.order_by('-pk')[:5])
