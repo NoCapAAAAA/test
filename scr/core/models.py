@@ -45,26 +45,8 @@ class OrderStatus(models.IntegerChoices):
     FINISH = 3, 'Завершен'
 
 
-class PlaceStatus(models.IntegerChoices):
-    FREE = 0, 'Свободен'
-    BUSY = 1, 'Занят'
-
-
-class PlaceHold(models.Model):
-    number = models.CharField(verbose_name='Место хранения', max_length=125, )
-    status = models.IntegerField(verbose_name='Статус', choices=PlaceStatus.choices)
-
-    def __str__(self):
-        return f'{self.number}'
-
-    class Meta:
-        verbose_name = 'Место хранения'
-        verbose_name_plural = 'Маста хранения'
-
-
 class AdressSirvice(models.Model):
     adress = models.CharField(verbose_name='Адрес сервиса', max_length=125, )
-    placehold = models.ManyToManyField(PlaceHold, verbose_name='Место хранения',)
 
     def __str__(self):
         return f'{self.adress}'
@@ -93,7 +75,7 @@ class OrderStorage(models.Model):
         return reverse('order_detail', kwargs={'pk': self.pk})
 
     def __str__(self) -> str:
-        return f'{self.user} {self.period} {self.size} {self.adress} {self.status} {self.price} {self.is_payed} {self.payed_at} {self.created_at} {self.updated_at}'
+        return f'Клиент - {self.user}, перирод - {self.period} '
 
     def __init__(self, *args, **kwargs) -> None:
         super().__init__(*args, **kwargs)

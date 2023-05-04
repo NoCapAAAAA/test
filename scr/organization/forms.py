@@ -49,14 +49,28 @@ class CustomPasswordChangeForm(auth_forms.PasswordChangeForm):
 
 
 class UpdateOrderDir(forms.ModelForm):
+
     class Meta:
         model = m.OrderStorage
         fields = '__all__'
 
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['user'].disabled = True
+        self.fields['size'].disabled = True
+        self.fields['period'].disabled = True
+        self.fields['adress'].disabled = True
+        self.fields['payed_at'].disabled = True
+        self.fields['datastart'].disabled = True
+        self.fields['datafinish'].disabled = True
+        self.fields['price'].disabled = True
+        self.fields['quantity'].disabled = True
+
+
 
 class CreateOrderForm(forms.ModelForm):
     price = forms.IntegerField(widget=forms.HiddenInput(), required=False)
-    user = forms.ModelChoiceField(queryset=get_user_model().objects.all(), )
+    user = forms.ModelChoiceField(queryset=get_user_model().objects.order_by('-pk')[:5])
     payed_at = forms.DateTimeField(widget=forms.HiddenInput(), required=False)
 
     class Meta:

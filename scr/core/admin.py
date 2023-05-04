@@ -58,10 +58,3 @@ class CallApplication(admin.ModelAdmin):
     class Meta:
         model = m.CallApplication
 
-
-@admin.register(m.PlaceHold)
-class PlaceHold(admin.ModelAdmin):
-    list_display = [field.name for field in m.PlaceHold._meta.fields]
-
-    class Meta:
-        model = m.PlaceHold
