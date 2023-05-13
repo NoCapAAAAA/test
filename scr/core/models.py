@@ -66,10 +66,11 @@ class OrderStorage(models.Model):
     price = models.DecimalField(max_digits=10, decimal_places=2, default=0)
     is_payed = models.BooleanField(verbose_name='Оплачен', default=False)
     payed_at = models.DateTimeField(verbose_name='Дата оплаты', blank=True, null=True)
-    datastart = models.DateTimeField(verbose_name='Дата начала', blank=True, null=True)
-    datafinish = models.DateTimeField(verbose_name='Дата окончания', blank=True, null=True)
+    datastart = models.DateTimeField(verbose_name='Дата начала хранения', blank=True, null=True)
+    datafinish = models.DateTimeField(verbose_name='Дата окончания хранения', blank=True, null=True)
     created_at = models.DateTimeField(verbose_name='Создан', auto_now_add=True)
     updated_at = models.DateTimeField(verbose_name='Обновлён', auto_now=True)
+    cheuq = models.ImageField('Чек', blank=True, upload_to='cheuqs/', null=True)
 
     def get_absolute_url(self):
         return reverse('order_detail', kwargs={'pk': self.pk})

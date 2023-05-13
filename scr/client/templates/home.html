@@ -161,35 +161,37 @@
                 <div class="Form_Left__tNNPa">
                   <div>
                     <div>Диаметр колеса</div>
-                    {% for size in size %}
                     <select class="Form_DiameterSelect__JOjNP" id="size">
-                      <option value="{{ size }}">{{ size }}</option>
+                      {% for size in size %}
+                      <option value="{{ size }}">R{{ size }}</option>
+                      {% endfor %}
                     </select>
-                    {% endfor %}
-                  </div>
-                  <div>
-                    <div>Срок хранения</div>
-                    {% for period in period %}
-                    <select class="Form_TermSelect__O2VLI" id="period">
-                      <option value="{{ period }}">{{ period }}</option>
-                    </select>
-                    {% endfor %}
                   </div>
                   <div>
                     <div>Количество шин</div>
-                    {% for quantity in quantity %}
                     <select class="Form_TermSelect__O2VLI" id="quantity">
-                      <option value="{{ quantity }}">{{ quantity }}</option>
+                      {% for quantity in quantity %}
+                      <option value="{{ quantity }}">{{ quantity }} шт.</option>
+                      {% endfor %}
                     </select>
-                    {% endfor %}
                   </div>
+                  <div>
+                    <div>Срок хранения</div>
+
+                    <select class="Form_TermSelect__O2VLI" id="period">
+                      {% for period in period %}
+                      <option value="{{ period }}">{{ period }} мес.</option>
+                      {% endfor %}
+                    </select>
+                  </div>
+
                 </div>
 
               </div>
               <div>
                 <button class="Button_Button__vrlso Button_Red__P9_46 Form_Btn__jUOxm" id="js-button" type="button">Рассчитать</button>
-                <div class="Form_ServiceCost__m1jVb"> &nbsp;<b> &nbsp; <div id="summ">&nbsp;</div> &nbsp;</b></div>
-                <a href="">Записаться</a>
+                &nbsp;<b> &nbsp; <div id="summ">&nbsp;</div> &nbsp;</b>
+
               </div>
             </div>
             <div>
