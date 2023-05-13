@@ -1,12 +1,10 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import get_object_or_404, redirect, render
-from django.views.generic import TemplateView, UpdateView, DetailView, ListView, CreateView, FormView
+from django.views.generic import TemplateView, UpdateView, DetailView, ListView, CreateView
 from django.contrib.auth import get_user_model
 from django.urls import reverse_lazy
 from . import forms as f
 import core.models as m
-from django.contrib.auth.decorators import login_required
-from django.utils.decorators import method_decorator
 
 
 User = get_user_model()
@@ -14,6 +12,14 @@ User = get_user_model()
 
 class HomeView(TemplateView):
     template_name = 'home.html'
+    # Получить данные из БД по (Размер, Срок, Количество) и через JS обрабатывать по нажатию кнопки
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['size'] = m.TireSize.objects.order_by('pk')
+        context['quantity'] = m.QuantityOfTires.objects.order_by('pk')
+        context['period'] = m.PeriodOfStorage.objects.order_by('pk')
+        return context
 
 
 class AboutView(TemplateView):
