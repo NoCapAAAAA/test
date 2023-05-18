@@ -32,7 +32,7 @@ class Migration(migrations.Migration):
                 ('middle_name', models.CharField(blank=True, max_length=150, verbose_name='Отчество')),
                 ('phone_number', models.CharField(blank=True, max_length=127, verbose_name='Телефон')),
                 ('gender', models.CharField(blank=True, choices=[('M', 'Мужской'), ('F', 'Женский')], max_length=1, verbose_name='Пол')),
-                ('photo', models.ImageField(blank=True, default='avatars/user.png', upload_to='avatars/', verbose_name='Фото')),
+                ('photo', models.ImageField(blank=True, default='avatars/user_default.jpg', upload_to='avatars/', verbose_name='Фото')),
                 ('groups', models.ManyToManyField(blank=True, help_text='The groups this user belongs to. A user will get all permissions granted to each of their groups.', related_name='user_set', related_query_name='user', to='auth.group', verbose_name='groups')),
                 ('user_permissions', models.ManyToManyField(blank=True, help_text='Specific permissions for this user.', related_name='user_set', related_query_name='user', to='auth.permission', verbose_name='user permissions')),
             ],

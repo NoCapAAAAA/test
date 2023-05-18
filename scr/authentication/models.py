@@ -12,7 +12,14 @@ class User(AbstractUser):
     middle_name = models.CharField('Отчество', max_length=150, blank=True)
     phone_number = models.CharField('Телефон', max_length=127, blank=True,)
     gender = models.CharField('Пол', max_length=1, choices=Gender.choices, blank=True)
-    photo = models.ImageField('Фото', blank=True, upload_to='avatars/', default='avatars/user.png')
+    photo = models.ImageField('Фото', blank=True, upload_to='avatars/', default='avatars/user_default.jpg')
+
+    @property
+    def get_photo_url(self):
+        if self.photo and hasattr(self.photo, 'url'):
+            return self.photo.url
+        else:
+            return "/static/images/user_default.jpg"
 
     def get_absolute_url(self):
         return reverse('user_detail', kwargs={'username': self.username})

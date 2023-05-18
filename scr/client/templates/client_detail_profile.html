@@ -13,7 +13,7 @@
 					<div class="dashboard__profile card profile-card">
 						<div class="card-body profile-card__body">
 							<div class="profile-card__avatar">
-								<img src="{{ user.photo.url }}" alt="">
+								    <img src = "{{ user.get_photo_url }}" class ="img-responsive thumbnail " alt="img" >
 							</div>
 							<div class="profile-card__name">{{ user.username }}</div>
 							<div class="profile-card__email">{{ user.email }}</div>

@@ -41,6 +41,28 @@
                     <span>Список сотрудников</span>
                 </a>
             </li>
+            <li>
+                <a href="#">
+                    <span class="nav-link-icon">
+                        <i data-feather="layers"></i>
+                    </span>
+                    <span>Справочники</span>
+                </a>
+                <ul>
+                    <li>
+                        <a  href="{% url 'director_orders_report_view' %}">Срок хранения</a>
+                    </li>
+                    <li>
+                        <a  href="{% url 'director_users_report_view' %}">Размеры</a>
+                    </li>
+                    <li>
+                        <a  href="{% url 'director_users_report_view' %}">Количество</a>
+                    </li>
+                    <li>
+                        <a  href="{% url 'director_users_report_view' %}">Адреса сервисов</a>
+                    </li>
+                </ul>
+            </li>
 		</ul>
 	</div>
 </div>

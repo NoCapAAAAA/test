@@ -40,14 +40,14 @@
           <li class="nav-item dropdown">
             <a href="#" class="nav-link dropdown-toggle" title="User menu" data-toggle="dropdown">
               <figure class="avatar avatar-sm">
-                <img src="{{ user.photo.url }}" class="rounded-circle" alt="avatar">
+                <img src = "{{ user.get_photo_url }}" class ="img-responsive thumbnail " alt="img" >
               </figure>
               <span class="ml-2 d-sm-inline d-none">{{ user.firstname }} {{ user.lastname }}</span>
             </a>
             <div class="dropdown-menu dropdown-menu-right dropdown-menu-big">
               <div class="text-center py-4">
                 <figure class="avatar avatar-lg mb-3 border-0">
-                  <img src="{{ user.photo.url }}" class="rounded-circle" alt="image">
+                  <img src = "{{ user.get_photo_url }}" class ="img-responsive thumbnail " alt="img" >
                 </figure>
                 <h5 class="text-center">{{ user.username }}</h5>
                 <div class="mb-3 small text-center text-muted">{{ user.email }}</div>

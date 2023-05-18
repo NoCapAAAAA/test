@@ -61,7 +61,7 @@
                 <td>{{ order.user }}</td>
                 <td>{{ order.price }} ₽</td>
                 <td>
-                  <span class="badge bg-secondary-bright text-secondary">{{ order.get_status_display }}</span>
+                  {{ order.get_status_display }}
                 </td>
                 <td>{{ order.created_at }}</td>
 

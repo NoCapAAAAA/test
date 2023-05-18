@@ -1,27 +1,23 @@
 from core import models as m
 from django.contrib import messages
 from service.filters import UsersFilterDirector
+from service.decorators import group_required
+from service.charts import months, colorPrimary, colorSuccess, colorDanger, generate_color_palette, get_year_dict
 from django.contrib.auth.models import Group
 from organization import forms as f
 from django.utils.decorators import method_decorator
-from django.views.generic import UpdateView,ListView
+from django.views.generic import UpdateView, ListView, TemplateView
 from django.urls import reverse_lazy
-from service.decorators import group_required
-from django.contrib.auth import get_user_model
-from django.db.models import Sum
-from django.views.generic import TemplateView
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from docx import *
 from django.utils import timezone
 from io import BytesIO
 from datetime import datetime, date
 import locale
-from django.db.models import Count
+from django.db.models import Count, Sum
 from django.db.models.functions import ExtractYear, ExtractMonth
-from django.http import JsonResponse
-from core.models import OrderStorage
-from service.charts import months, colorPrimary, colorSuccess, colorDanger, generate_color_palette, get_year_dict
 from authentication.models import User as Users
+from django.contrib.auth import get_user_model
 User = get_user_model()
 
 
@@ -35,28 +31,26 @@ class DirectorHomeView(TemplateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         last_week = timezone.now() - timezone.timedelta(days=7)
-        context['orders'] = OrderStorage.objects.count()
+        context['orders'] = m.OrderStorage.objects.count()
         context['lastweakusers'] = User.objects.filter(date_joined__gte=last_week).count()
-        context['lastweakorders'] = OrderStorage.objects.filter(created_at__gte=last_week).count()
-        context['instorageorders'] = OrderStorage.objects.filter(status=m.OrderStatus.STORAGE).count()
-        context['finishorders'] = OrderStorage.objects.filter(status=m.OrderStatus.FINISH).count()
+        context['lastweakorders'] = m.OrderStorage.objects.filter(created_at__gte=last_week).count()
+        context['instorageorders'] = m.OrderStorage.objects.filter(status=m.OrderStatus.STORAGE).count()
+        context['finishorders'] = m.OrderStorage.objects.filter(status=m.OrderStatus.FINISH).count()
         last_month = timezone.now() - timezone.timedelta(days=30)
-        context['totalpriceorderlastmonth'] = OrderStorage.objects.filter(
+        context['totalpriceorderlastmonth'] = m.OrderStorage.objects.filter(
             is_payed=True,
             status=m.OrderStatus.FINISH,
             created_at__gte=last_month
         ).aggregate(Sum('price'))['price__sum']
-        context['totalpriceorderyear'] = OrderStorage.objects.filter(is_payed=True, status=m.OrderStatus.FINISH).aggregate(Sum('price'))['price__sum']
+        context['totalpriceorderyear'] = m.OrderStorage.objects.filter(is_payed=True, status=m.OrderStatus.FINISH).aggregate(Sum('price'))['price__sum']
         last_year = timezone.now() - timezone.timedelta(days=365)
-        context['totalpriceorderlastyear'] = OrderStorage.objects.filter(
+        context['totalpriceorderlastyear'] = m.OrderStorage.objects.filter(
             is_payed=True,
             status=m.OrderStatus.FINISH,
             created_at__year=last_year.year - 1
         ).aggregate(Sum('price'))['price__sum']
         context['callaplication'] = m.CallApplication.objects.order_by('-pk')[:5]
         return context
-
-
 
 
 class DirectorUsersListView(ListView):
@@ -262,7 +256,7 @@ def create_report_users(request):
     return response
 
 def get_filter_options(request):
-    grouped_purchases = OrderStorage.objects.annotate(year=ExtractYear("created_at")).values("year").order_by("-year").distinct()
+    grouped_purchases = m.OrderStorage.objects.annotate(year=ExtractYear("created_at")).values("year").order_by("-year").distinct()
     options = [purchase["year"] for purchase in grouped_purchases]
 
     return JsonResponse({
@@ -271,7 +265,7 @@ def get_filter_options(request):
 
 
 def get_sales_chart(request, year):
-    purchases = OrderStorage.objects.filter(created_at__year=year)
+    purchases = m.OrderStorage.objects.filter(created_at__year=year)
     grouped_purchases = purchases.annotate(month=ExtractMonth("created_at"))\
         .values("month").annotate(count=Count("id")).values("month", "count").order_by("month")
 

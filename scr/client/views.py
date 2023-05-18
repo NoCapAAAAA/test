@@ -251,21 +251,21 @@ def order_pay_tire(request, pk):
     order = get_object_or_404(m.OrderStorage, pk=pk)
     order.is_payed = True
     order.save()
-    pdf = Document()
-    page = Page()
-    layout = SingleColumnLayout(page)
-
-    # add a Paragraph object
-    layout.add(Paragraph("Hello World!"))
-    file_name = f"order_{order.pk}.pdf"
-    from pathlib import Path
-
-
-    with open(Path(f"\\cheuqs\\"), "wb") as pdf_file_handle:
-        PDF.dumps(pdf_file_handle, pdf)
-        time.sleep(5)
-        order.cheuq.save(file_name, File(open(file_name, 'rb')))
-    return redirect(reverse_lazy('client_order_detail', kwargs={'pk': pk}))
+    # pdf = Document()
+    # page = Page()
+    # layout = SingleColumnLayout(page)
+    #
+    # # add a Paragraph object
+    # layout.add(Paragraph("Hello World!"))
+    # file_name = f"order_{order.pk}.pdf"
+    # from pathlib import Path
+    #
+    #
+    # with open(Path(f"\\cheuqs\\"), "wb") as pdf_file_handle:
+    #     PDF.dumps(pdf_file_handle, pdf)
+    #     time.sleep(5)
+    #     order.cheuq.save(file_name, File(open(file_name, 'rb')))
+    # return redirect(reverse_lazy('client_order_detail', kwargs={'pk': pk}))
 
 
 def order_cancel_tire(request, pk):
