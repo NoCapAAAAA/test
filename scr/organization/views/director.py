@@ -16,11 +16,20 @@ from django.utils import timezone
 from io import BytesIO
 from datetime import datetime, date
 import locale
-
+from django.db.models import Count
+from django.db.models.functions import ExtractYear, ExtractMonth
+from django.http import JsonResponse
+from core.models import OrderStorage
+from service.charts import months, colorPrimary, colorSuccess, colorDanger, generate_color_palette, get_year_dict
+from authentication.models import User as Users
 User = get_user_model()
 
 
 class DirectorHomeView(TemplateView):
+    @method_decorator(group_required('Директор'))
+    def dispatch(self, request, *args, **kwargs):
+        return super().dispatch(request, *args, **kwargs)
+
     template_name = 'director/home_director.html'
 
     def get_context_data(self, **kwargs):
@@ -143,7 +152,8 @@ class DirectorUsersReportView(TemplateView):
 
     template_name = 'director/users_report_director.html'
 
-def TestDocument(request):
+
+def create_report(request):
     locale.setlocale(
         category=locale.LC_ALL,
         locale="Russian"  # Note: do not use "de_DE" as it doesn't work
@@ -157,9 +167,9 @@ def TestDocument(request):
     document.add_paragraph("%s" % date.today().strftime('%B %d, %Y'))
 
     document.add_paragraph('Отчёт о заказах')
-    qs2 = m.OrderStorage.objects.all().order_by('pk')
-    qs2count = qs2.count() + 1
-    table = document.add_table(rows=qs2count, cols=8)
+    orders = m.OrderStorage.objects.all().order_by('pk')
+    orders_count = orders.count()
+    table = document.add_table(rows=orders_count + 1, cols=8)
     table.style = 'Table Grid'
     table.cell(0, 0).text = 'Номер заказа'
     table.cell(0, 1).text = 'Клиент'
@@ -170,30 +180,17 @@ def TestDocument(request):
     table.cell(0, 6).text = 'Стоимость заказа'
     table.cell(0, 7).text = 'Оплачен'
 
-    # Creating a table object
+    # Adding data to the table
+    for i, order in enumerate(orders, start=1):
+        table.cell(i, 0).text = str(order.pk)
+        table.cell(i, 1).text = str(order.user)
+        table.cell(i, 2).text = str(order.size)
+        table.cell(i, 3).text = str(f"{str(order.period)} мес.")
+        table.cell(i, 4).text = str(order.adress) if order.adress else "---"
+        table.cell(i, 5).text = str(order.get_status_display())
+        table.cell(i, 6).text = str(f"{str(order.price)} ₽")
+        table.cell(i, 7).text = "Да" if order.is_payed else "Нет"
 
-    for order in m.OrderStorage.objects.all().order_by('pk'):
-
-        qs2 = m.OrderStorage.objects.all().order_by('pk')
-        row = qs2.count()
-        table.cell(row, 0).text = str(order.pk)
-        table.cell(row, 1).text = str(order.user)
-        table.cell(row, 2).text = str(order.size)
-        table.cell(row, 3).text = str(order.period)
-        if order.adress == None:
-            order.adress = "---"
-        table.cell(row, 4).text = str(order.adress)
-        table.cell(row, 5).text = str(order.get_status_display())
-        table.cell(row, 6).text = str(order.price)
-        if order.is_payed == True:
-            order.is_payed = "Да"
-        else:
-            order.is_payed = "Нет"
-        table.cell(row, 7).text = str(order.is_payed)
-    total_price = OrderStorage.objects.filter(is_payed=True, status=m.OrderStatus.FINISH).aggregate(Sum('price'))[
-        'price__sum']
-
-    document.add_paragraph('Общая стоимость: '+ str(total_price))
     document.add_page_break()
 
     # Prepare document for download
@@ -210,13 +207,59 @@ def TestDocument(request):
     response['Content-Length'] = length
     return response
 
-from django.contrib.admin.views.decorators import staff_member_required
-from django.db.models import Count, F, Avg
-from django.db.models.functions import ExtractYear, ExtractMonth
-from django.http import JsonResponse
-from core.models import OrderStorage
-from service.charts import months, colorPrimary, colorSuccess, colorDanger, generate_color_palette, get_year_dict
 
+def create_report_users(request):
+    locale.setlocale(
+        category=locale.LC_ALL,
+        locale="Russian"  # Note: do not use "de_DE" as it doesn't work
+    )
+    current_datetime = datetime.now()
+    str_current_datetime = str(current_datetime)
+    document = Document()
+    docx_title = "report" + str_current_datetime + ".docx"
+    # ---- Cover Letter ----
+    document.add_paragraph()
+    document.add_paragraph("%s" % date.today().strftime('%B %d, %Y'))
+
+    document.add_paragraph('Отчёт о пользователях')
+
+    users_count = Users.objects.all().order_by('pk').count()
+
+    table = document.add_table(rows=users_count + 1, cols=8)
+    table.style = 'Table Grid'
+    table.cell(0, 0).text = 'ID'
+    table.cell(0, 1).text = 'Имя'
+    table.cell(0, 2).text = 'Фамилия'
+    table.cell(0, 3).text = 'Отчество'
+    table.cell(0, 4).text = 'Телефон'
+    table.cell(0, 5).text = 'Email'
+    table.cell(0, 6).text = 'Пол'
+
+    # Adding data to the table
+    for i, user in enumerate(Users.objects.all(), start=1):
+        table.cell(i, 0).text = str(user.pk)
+        table.cell(i, 1).text = str(user.first_name)
+        table.cell(i, 2).text = str(user.last_name)
+        table.cell(i, 3).text = str(user.middle_name)
+        table.cell(i, 4).text = str(user.phone_number)
+        table.cell(i, 5).text = str(user.email)
+        table.cell(i, 6).text = str(user.gender)
+
+    document.add_page_break()
+
+    # Prepare document for download
+    # -----------------------------
+    f = BytesIO()
+    document.save(f)
+    length = f.tell()
+    f.seek(0)
+    response = HttpResponse(
+        f.getvalue(),
+        content_type='application/vnd.openxmlformats-officedocument.wordprocessingml.document'
+    )
+    response['Content-Disposition'] = 'attachment; filename=' + docx_title
+    response['Content-Length'] = length
+    return response
 
 def get_filter_options(request):
     grouped_purchases = OrderStorage.objects.annotate(year=ExtractYear("created_at")).values("year").order_by("-year").distinct()
@@ -249,78 +292,3 @@ def get_sales_chart(request, year):
             }]
         },
     })
-
-
-#
-# @staff_member_required
-# def spend_per_customer_chart(request, year):
-#     purchases = Purchase.objects.filter(time__year=year)
-#     grouped_purchases = purchases.annotate(price=F("item__price")).annotate(month=ExtractMonth("time"))\
-#         .values("month").annotate(average=Avg("item__price")).values("month", "average").order_by("month")
-#
-#     spend_per_customer_dict = get_year_dict()
-#
-#     for group in grouped_purchases:
-#         spend_per_customer_dict[months[group["month"]-1]] = round(group["average"], 2)
-#
-#     return JsonResponse({
-#         "title": f"Spend per customer in {year}",
-#         "data": {
-#             "labels": list(spend_per_customer_dict.keys()),
-#             "datasets": [{
-#                 "label": "Amount ($)",
-#                 "backgroundColor": colorPrimary,
-#                 "borderColor": colorPrimary,
-#                 "data": list(spend_per_customer_dict.values()),
-#             }]
-#         },
-#     })
-#
-#
-# @staff_member_required
-# def payment_success_chart(request, year):
-#     purchases = Purchase.objects.filter(time__year=year)
-#
-#     return JsonResponse({
-#         "title": f"Payment success rate in {year}",
-#         "data": {
-#             "labels": ["Successful", "Unsuccessful"],
-#             "datasets": [{
-#                 "label": "Amount ($)",
-#                 "backgroundColor": [colorSuccess, colorDanger],
-#                 "borderColor": [colorSuccess, colorDanger],
-#                 "data": [
-#                     purchases.filter(successful=True).count(),
-#                     purchases.filter(successful=False).count(),
-#                 ],
-#             }]
-#         },
-#     })
-#
-#
-# @staff_member_required
-# def payment_method_chart(request, year):
-#     purchases = Purchase.objects.filter(time__year=year)
-#     grouped_purchases = purchases.values("payment_method").annotate(count=Count("id"))\
-#         .values("payment_method", "count").order_by("payment_method")
-#
-#     payment_method_dict = dict()
-#
-#     for payment_method in Purchase.PAYMENT_METHODS:
-#         payment_method_dict[payment_method[1]] = 0
-#
-#     for group in grouped_purchases:
-#         payment_method_dict[dict(Purchase.PAYMENT_METHODS)[group["payment_method"]]] = group["count"]
-#
-#     return JsonResponse({
-#         "title": f"Payment method rate in {year}",
-#         "data": {
-#             "labels": list(payment_method_dict.keys()),
-#             "datasets": [{
-#                 "label": "Amount ($)",
-#                 "backgroundColor": generate_color_palette(len(payment_method_dict)),
-#                 "borderColor": generate_color_palette(len(payment_method_dict)),
-#                 "data": list(payment_method_dict.values()),
-#             }]
-#         },
-#     })

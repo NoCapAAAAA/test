@@ -50,7 +50,6 @@
                 <th>Цена</th>
                 <th>Статус</th>
                 <th>Дата оформления</th>
-                <th class="text-right">Action</th>
               </tr>
             </thead>
             <tbody>
@@ -65,20 +64,7 @@
                   <span class="badge bg-secondary-bright text-secondary">{{ order.get_status_display }}</span>
                 </td>
                 <td>{{ order.created_at }}</td>
-                <td class="text-right">
-                  <div class="dropdown">
-                    <a href="#" data-toggle="dropdown" class="btn btn-floating" aria-haspopup="true" aria-expanded="false">
-                      <i class="ti-more-alt"></i>
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-right">
-                      <a href="#" class="dropdown-item">View Detail</a>
-                      <a href="#" class="dropdown-item">Send</a>
-                      <a href="#" class="dropdown-item">Download</a>
-                      <a href="#" class="dropdown-item">Print</a>
-                      <a href="#" class="dropdown-item text-danger">Delete</a>
-                    </div>
-                  </div>
-                </td>
+
               </tr>
             {% endfor %}
             </tbody>

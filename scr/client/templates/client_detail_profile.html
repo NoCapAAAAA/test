@@ -44,7 +44,7 @@
 					</div>
 					<div class="dashboard__orders card">
 						<div class="card-header">
-							<h5>Recent Orders</h5>
+							<h5>Поседние заказы</h5>
 						</div>
 						<div class="card-divider"></div>
 						<div class="card-table">
@@ -52,31 +52,21 @@
 								<table>
 									<thead>
 										<tr>
-											<th>Order</th>
-											<th>Date</th>
-											<th>Status</th>
-											<th>Total</th>
+											<th>№</th>
+											<th>Дата</th>
+											<th>Статус</th>
+											<th>Стоимость</th>
 										</tr>
 									</thead>
 									<tbody>
+									{% for 3 in last_orders %}
 										<tr>
-											<td><a href="">#8132</a></td>
-											<td>02 April, 2019</td>
-											<td>Pending</td>
-											<td>$2,719.00 for 5 item(s)</td>
+											<td><a href="{{ 3.pk }}">#{{ 3.pk }}</a></td>
+											<td>{{ 3.created_at }}</td>
+											<td>{{ 3.get_status_display }}</td>
+											<td>{{ 3.price }}</td>
 										</tr>
-										<tr>
-											<td><a href="">#7592</a></td>
-											<td>28 March, 2019</td>
-											<td>Pending</td>
-											<td>$374.00 for 3 item(s)</td>
-										</tr>
-										<tr>
-											<td><a href="">#7192</a></td>
-											<td>15 March, 2019</td>
-											<td>Shipped</td>
-											<td>$791.00 for 4 item(s)</td>
-										</tr>
+									{% endfor %}
 									</tbody>
 								</table>
 							</div>

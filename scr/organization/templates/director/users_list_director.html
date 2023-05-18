@@ -40,10 +40,9 @@
                             <th>Имя</th>
                             <th>Юсернейм</th>
                             <th>Email</th>
-                            <th>Country</th>
-                            <th>Роль</th>
+                            <th>Номер телефона</th>
+                            <th>Пол</th>
                             <th>Статус</th>
-                            <th class="text-right">Action</th>
                         </tr>
                         </thead>
                         {% for u in page_obj %}
@@ -51,35 +50,21 @@
                         <tr>
                             <td><a href="{{ u.pk }}">№{{ u.pk }}</a></td>
                             <td>
-                                <a href="#">
-                                    <figure class="avatar avatar-sm mr-2">
-                                        <img src="../../assets/media/image/user/man_avatar3.jpg"
-                                             class="rounded-circle" alt="avatar">
-                                    </figure>
-                                    {{u.first_name}}
-                                </a>
+                                {{u.first_name}}
                             </td>
                             <td>{{u.username}}</td>
                             <td>{{u.email}}</td>
-                            <td>Syria</td>
-                            <td>Staff</td>
+                            <td>{{u.phone_number}}</td>
+                            <td>{{u.gender}}</td>
                             <td>
-                                <span class="badge bg-danger-bright text-danger">Blocked</span>
+                                {% if u.is_active is True %}
+                                Активен
+                                {% elif u.is_active is False %}
+                                Не активен
+                                {% endif %}
                             </td>
-                            <td class="text-right">
-                                <div class="dropdown">
-                                    <a href="#" data-toggle="dropdown"
-                                       class="btn btn-floating"
-                                       aria-haspopup="true" aria-expanded="false">
-                                        <i class="ti-more-alt"></i>
-                                    </a>
-                                    <div class="dropdown-menu dropdown-menu-right">
-                                        <a href="#" class="dropdown-item">View Profile</a>
-                                        <a href="#" class="dropdown-item">Edit</a>
-                                        <a href="#" class="dropdown-item text-danger">Delete</a>
-                                    </div>
-                                </div>
-                            </td>
+
+
                         </tr>
                         </tbody>
                         {% endfor %}

@@ -52,6 +52,11 @@ class UserDetailView(DetailView):
     def get_object(self, **kwargs):
         return self.request.user
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['last_orders'] = m.OrderStorage.objects.filter(user=self.request.user).order_by('-pk')[:3]
+        return context
+
 
 class PasswordChangeView(UpdateView):
     form_class = f.CustomPasswordChangeForm

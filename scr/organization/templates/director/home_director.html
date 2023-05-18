@@ -234,13 +234,25 @@
       <h6 class="card-title mb-2 text-center">Выручка за год</h6>
       <p class="mb-0 text-muted">Стоимость всех заказов за последний год</p>
       <hr>
-      <div class="font-size-40 font-weight-bold">{{totalpriceorderyear}}</div>
+      <div class="font-size-40 font-weight-bold">
+        {% if totalpriceorderyear is None %}
+        Информация не найдена
+        {% else %}
+        {{ totalpriceorderlastyear }}
+        {% endif %}
+      </div>
       <hr>
       <div class="row mb-3">
         <div class="col-md-6">
           <p class="text-muted mb-1">Текущий месяц</p>
           <div>
-            <span class="font-weight-bold">{{totalpriceorderlastmonth}}</span>
+            <span class="font-weight-bold">
+              {% if totalpriceorderlastmonth is None %}
+              Информация не найдена
+              {% else %}
+              {{ totalpriceorderlastyear }}
+              {% endif %}
+            </span>
           </div>
         </div>
         <div class="col-md-6">
@@ -248,7 +260,7 @@
           <div>
             <span class="font-weight-bold">
                 {% if totalpriceorderlastyear is None %}
-                    {{ 'Информация не найдена' }}
+                 Информация не найдена
                 {% else %}
                     {{ totalpriceorderlastyear }}
                 {% endif %}
