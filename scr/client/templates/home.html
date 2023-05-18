@@ -17,18 +17,6 @@
       </div>
       <section class="Section_Section__CTvcH Main_Section__9_umS">
         <h1 class="Main_Title__K2lyd">Сезонное хранение шин в <!-- -->Москве</h1>
-        <!-- <div class="BannerDesktop_Banner__TwrDW">
-          <div class="BannerDesktop_Wrap__Cio0J">
-            <div>
-              <h2 class="BannerDesktop_Title__AhkOK">Экономьте <br> пространство <br> и время </h2>
-              <button class="Button_Button__vrlso Button_Red__P9_46 BannerDesktop_Button__ZB8_D">Выбрать центр</button>
-            </div>
-            <div class="BannerDesktop_Right__mNEFo">
-              <h2 class="BannerDesktop_Title__AhkOK BannerDesktop_Title__right__GONqZ">Узнать стоимость <br> хранения шин </h2>
-              <button class="Button_Button__vrlso Button_White__S6L_1 BannerDesktop_Button__ZB8_D">Рассчитать</button>
-            </div>
-          </div>
-        </div> -->
         <div class="Reason_Reason__FXF56">
           <h2 class="CustomTitle_CustomTitle__EnhIT Reason_Title__7O9K8">Почему стоит сдать колеса на сезонное хранение</h2>
           <div class="WrapperObserver_Wrapper__fOiYz">
@@ -45,9 +33,7 @@
                       <div class="BorderedTooltip_BorderedTooltip__G_F89">
                         <span style="box-sizing:border-box;display:inline-block;overflow:hidden;width:initial;height:initial;background:none;opacity:1;border:0;margin:0;padding:0;position:relative;max-width:100%">
                             <span style="box-sizing:border-box;display:block;width:initial;height:initial;background:none;opacity:1;border:0;margin:0;padding:0;max-width:100%">
-                                <!-- <img style="display:block;max-width:100%;width:initial;height:initial;background:none;opacity:1;border:0;margin:0;padding:0" alt="" aria-hidden="true" src="{% static 'images/tirestore/reason1.svg' %}"></span><img alt="info" src="/next/img/shinomontaj/info2.svg" decoding="async" data-nimg="intrinsic" style="position:absolute;top:0;left:0;bottom:0;right:0;box-sizing:border-box;padding:0;border:none;margin:auto;display:block;width:0;height:0;min-width:100%;max-width:100%;min-height:100%;max-height:100%" srcset="/next/img/shinomontaj/info2.svg 1x, /next/img/shinomontaj/info2.svg 2x"></span> -->
-                        <!-- <div class="BorderedTooltip_BorderedTooltip__tooltip__MoCSc BorderedTooltip_BorderedTooltip__tooltip_right___4H51">Колесо.ру — федеральная сеть шинных центров и сервисов. Более 150 филиалов, огромные склады, и представительства во всех федеральных округах России.</div> -->
-                      </div>
+                                </div>
                     </div>
                   </div>
                 </div>
@@ -175,37 +161,37 @@
                 <div class="Form_Left__tNNPa">
                   <div>
                     <div>Диаметр колеса</div>
-                    <select class="Form_DiameterSelect__JOjNP" id="Radius">
-                      <option value="15">R13</option>
-                      <option value="20">R14</option>
-                      <option value="25">R16</option>
-                      <option value="30">R16</option>
-                      <option value="35">R17</option>
-                      <option value="40">R18</option>
-                      <option value="45">R19</option>
-                      <option value="50">R20</option>
-                      <option value="55">R21</option>
-                      <option value="60">R22</option>
-                    </select>
-                  </div>
-                  <div>
-                    <div>Срок хранения</div>
-                    <select class="Form_TermSelect__O2VLI" id="month">
-                      <option value="30">1 Месяц</option>
-                      <option value="182">6 Месяцев</option>
+                    <select class="Form_DiameterSelect__JOjNP" id="size">
+                      {% for size in size %}
+                      <option value="{{ size }}">R{{ size }}</option>
+                      {% endfor %}
                     </select>
                   </div>
                   <div>
                     <div>Количество шин</div>
-                      <input type="number" class="Form_TermSelect__O2VLI"  id="kolvo" placeholder="Желаемое Количество Шин" name="phone_number" min="1" max="20" pattern="[+]7[\(]\d{3}[\)]\d{3}[\-]\d{2}[\-]\d{2}" required>
+                    <select class="Form_TermSelect__O2VLI" id="quantity">
+                      {% for quantity in quantity %}
+                      <option value="{{ quantity }}">{{ quantity }} шт.</option>
+                      {% endfor %}
+                    </select>
                   </div>
+                  <div>
+                    <div>Срок хранения</div>
+
+                    <select class="Form_TermSelect__O2VLI" id="period">
+                      {% for period in period %}
+                      <option value="{{ period }}">{{ period }} мес.</option>
+                      {% endfor %}
+                    </select>
+                  </div>
+
                 </div>
 
               </div>
               <div>
                 <button class="Button_Button__vrlso Button_Red__P9_46 Form_Btn__jUOxm" id="js-button" type="button">Рассчитать</button>
-                <div class="Form_ServiceCost__m1jVb"> &nbsp;<b> &nbsp; <div id="summ">&nbsp;</div> &nbsp;</b></div>
-                <a href="">Записаться</a>
+                &nbsp;<b> &nbsp; <div id="summ">&nbsp;</div> &nbsp;</b>
+
               </div>
             </div>
             <div>
