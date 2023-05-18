@@ -1,6 +1,3 @@
-import time
-
-from borb.pdf import PDF
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import get_object_or_404, redirect, render
 from django.views.generic import TemplateView, UpdateView, DetailView, ListView, CreateView
@@ -8,6 +5,7 @@ from django.contrib.auth import get_user_model
 from django.urls import reverse_lazy
 from . import forms as f
 import core.models as m
+from service import chek_gen
 
 
 User = get_user_model()
@@ -107,10 +105,6 @@ class OrderListView(LoginRequiredMixin, ListView):
 
     def get_queryset(self):
         return m.OrderStorage.objects.filter(user=self.request.user)
-    # def get_context_data(self, **kwargs):
-    #     context = super().get_context_data(**kwargs)
-    #     context['orders'] = m.OrderStorage.objects.filter(user=self.request.user)
-    #     return context
 
 
 class OrderDetailView(DetailView):
@@ -125,147 +119,15 @@ class OrderDetailView(DetailView):
         context['detail'] = m.OrderStorage.objects.filter(pk=self.kwargs['pk'])
         return context
 
-#
-# def order_pay_tire(request, pk):
-#     order = get_object_or_404(m.OrderStorage, pk=pk)
-#     order.is_payed = True
-#     order.save()
-#     from borb.pdf import Document
-from borb.pdf.page.page import Page
-#
-#     # Create document
-#     pdf = Document()
-#
-#     # Add page
-#     page = Page()
-#     pdf.add_page(page)
-#
-#     from borb.pdf.canvas.layout.page_layout.multi_column_layout import SingleColumnLayout
-#     from decimal import Decimal
-#
-#     page_layout = SingleColumnLayout(page)
-#     page_layout.vertical_margin = page.get_page_info().get_height() * Decimal(0.02)
-#
-#     from borb.pdf.canvas.layout.image.image import Image
-#
-#     page_layout.add(
-#         Image(
-#             "https://s3.stackabuse.com/media/articles/creating-an-invoice-in-python-with-ptext-1.png",
-#             width=Decimal(128),
-#             height=Decimal(128),
-#         ))
-#
-from borb.pdf.canvas.layout.table.fixed_column_width_table import FixedColumnWidthTable as Table
-from borb.pdf.canvas.layout.text.paragraph import Paragraph
-from borb.pdf.canvas.layout.layout_element import Alignment
-from datetime import datetime
-import random
-#
-#     def _build_invoice_information():
-#         table_001 = Table(number_of_rows=5, number_of_columns=3)
-#
-#         table_001.add(Paragraph("[Street Address]"))
-#         table_001.add(Paragraph("Date", font="Helvetica-Bold", horizontal_alignment=Alignment.RIGHT))
-#         now = datetime.now()
-#         table_001.add(Paragraph("%d/%d/%d" % (now.day, now.month, now.year)))
-#
-#         table_001.add(Paragraph("[City, State, ZIP Code]"))
-#         table_001.add(Paragraph("Invoice #", font="Helvetica-Bold", horizontal_alignment=Alignment.RIGHT))
-#         table_001.add(Paragraph("%d" % random.randint(1000, 10000)))
-#
-#         table_001.add(Paragraph("[Phone]"))
-#         table_001.add(Paragraph("Due Date", font="Helvetica-Bold", horizontal_alignment=Alignment.RIGHT))
-#         table_001.add(Paragraph("%d/%d/%d" % (now.day, now.month, now.year)))
-#
-#         table_001.add(Paragraph("[Email Address]"))
-#         table_001.add(Paragraph(" "))
-#         table_001.add(Paragraph(" "))
-#
-#         table_001.add(Paragraph("[Company Website]"))
-#         table_001.add(Paragraph(" "))
-#         table_001.add(Paragraph(" "))
-#
-#         table_001.set_padding_on_all_cells(Decimal(2), Decimal(2), Decimal(2), Decimal(2))
-#         table_001.no_borders()
-#         return table_001
-#
-#     page_layout = SingleColumnLayout(page)
-#     page_layout.vertical_margin = page.get_page_info().get_height() * Decimal(0.02)
-#     page_layout.add(
-#         Image(
-#             "https://s3.stackabuse.com/media/articles/creating-an-invoice-in-python-with-ptext-1.png",
-#             width=Decimal(128),
-#             height=Decimal(128),
-#         ))
-#
-#     # Invoice information table
-#     page_layout.add(_build_invoice_information())
-#
-#     # Empty paragraph for spacing
-#     page_layout.add(Paragraph(" "))
-from borb.pdf.canvas.color.color import HexColor, X11Color
-#
-#     def _build_billing_and_shipping_information():
-#         table_001 = Table(number_of_rows=6, number_of_columns=2)
-#         table_001.add(
-#             Paragraph(
-#                 "BILL TO",
-#                 background_color=HexColor("263238"),
-#                 font_color=X11Color("White"),
-#             )
-#         )
-#         table_001.add(
-#             Paragraph(
-#                 "SHIP TO",
-#                 background_color=HexColor("263238"),
-#                 font_color=X11Color("White"),
-#             )
-#         )
-#         table_001.add(Paragraph("[Recipient Name]"))  # BILLING
-#         table_001.add(Paragraph("[Recipient Name]"))  # SHIPPING
-#         table_001.add(Paragraph("[Company Name]"))  # BILLING
-#         table_001.add(Paragraph("[Company Name]"))  # SHIPPING
-#         table_001.add(Paragraph("[Street Address]"))  # BILLING
-#         table_001.add(Paragraph("[Street Address]"))  # SHIPPING
-#         table_001.add(Paragraph("[City, State, ZIP Code]"))  # BILLING
-#         table_001.add(Paragraph("[City, State, ZIP Code]"))  # SHIPPING
-#         table_001.add(Paragraph("[Phone]"))  # BILLING
-#         table_001.add(Paragraph("[Phone]"))  # SHIPPING
-#         table_001.set_padding_on_all_cells(Decimal(2), Decimal(2), Decimal(2), Decimal(2))
-#         table_001.no_borders()
-#         return table_001
-#
-#     from borb.pdf.pdf import PDF
-#
-#     with open("output.pdf", "wb") as pdf_file_handle:
-#         PDF.dumps(pdf_file_handle, pdf)
-#     return redirect(reverse_lazy('client_order_detail', kwargs={'pk': pk}))
-from django.core.files import File
-
-from io import BytesIO
-from django.core.files import File
-from borb.pdf import Document
-from borb.pdf import SingleColumnLayout
 
 def order_pay_tire(request, pk):
     order = get_object_or_404(m.OrderStorage, pk=pk)
     order.is_payed = True
+    check_filename = chek_gen.generate_pdf_check(order)
+
+    order.cheque.name = check_filename
     order.save()
-    # pdf = Document()
-    # page = Page()
-    # layout = SingleColumnLayout(page)
-    #
-    # # add a Paragraph object
-    # layout.add(Paragraph("Hello World!"))
-    # file_name = f"order_{order.pk}.pdf"
-    # from pathlib import Path
-    #
-    #
-    # with open(Path(f"\\cheuqs\\"), "wb") as pdf_file_handle:
-    #     PDF.dumps(pdf_file_handle, pdf)
-    #     time.sleep(5)
-    #     order.cheuq.save(file_name, File(open(file_name, 'rb')))
-    # return redirect(reverse_lazy('client_order_detail', kwargs={'pk': pk}))
+    return redirect(reverse_lazy('client_order_detail', kwargs={'pk': pk}))
 
 
 def order_cancel_tire(request, pk):

@@ -12,6 +12,27 @@
     border: 1px solid var(--clr-border)
     }
   </style>
+  <style>
+    .Form_CenterSelect__ayCSq, .Form_DiameterSelect__JOjNP, .Form_TermSelect__O2VLI {
+    cursor: pointer;
+    margin: 12px 0 20px;
+    padding: 0 32px 0 10px;
+    width: 150px;
+    height: 38px;
+    border: 1px solid var(--clr-border-btn);
+    background: var(--clr-input);
+    border-radius: 4px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-image: url(/next/img/shared/arrow-bottom.svg);
+    background-repeat: no-repeat;
+    background-position: 100%;
+    background-position-x: calc(100% - 11px);
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+  </style>
     <main>
       <div class="Section_Section__vfbN9">
       </div>
@@ -191,8 +212,13 @@
               <div>
                 <button class="Button_Button__vrlso Button_Red__P9_46 Form_Btn__jUOxm" id="js-button" type="button">Рассчитать</button>
                 &nbsp;<b> &nbsp; <div id="summ">&nbsp;</div> &nbsp;</b>
-
+                <a class="nav-links__item-link" href="{% url 'client_order_create' %}">
+                    <div class="nav-links__item-body">
+                      Оформить заказ
+                    </div>
+                  </a>
               </div>
+
             </div>
             <div>
               <span style="box-sizing:border-box;display:inline-block;overflow:hidden;width:initial;height:initial;background:none;opacity:1;border:0;margin:0;padding:0;position:relative;max-width:100%">
@@ -479,13 +505,36 @@
             </div>
           </div>
         </section>
+        <style>
+.button_for_redirect_to_order {
+  display: inline-block;
+  text-decoration: none;
+  background-color: blue;
+  padding: 10px 20px;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+  margin-right: 980px;
+}
+
+.button_for_redirect_to_order:hover {
+  background-color: #e0e0e0;
+}
+
+.button_for_redirect_to_order-body {
+  color: #fff;
+  font-weight: bold;
+}
+
+        </style>
+        <a class="button_for_redirect_to_order" href="{% url 'client_order_create' %}">
+
+                    <div class="button_for_redirect_to_order-body">
+                      Оформить заказ
+                    </div>
+                  </a>
       </div>
-      <section class="Section_Section__CTvcH">
-        <div class="AccountingDesktop_Accounting__NqBYg">
-          <h2 class="CustomTitle_CustomTitle__EnhIT AccountingDesktop_Title__nFtd6">Что еще важно учесть при хранении шин</h2>
-          <p class="AccountingDesktop_Text__ydj4z">Перед тем как отправить шины на хранение, Мы их тщательно вымываем и хорошо сушим. Только после этого резину можно отправлять на место хранения.</p>
-        </div>
-      </section>
+
     </main>
+
 </div>
 {% endblock %}
