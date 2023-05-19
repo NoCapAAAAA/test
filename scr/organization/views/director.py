@@ -50,6 +50,7 @@ class DirectorHomeView(TemplateView):
             created_at__year=last_year.year - 1
         ).aggregate(Sum('price'))['price__sum']
         context['callaplication'] = m.CallApplication.objects.order_by('-pk')[:5]
+        print(context)
         return context
 
 
@@ -286,3 +287,24 @@ def get_sales_chart(request, year):
             }]
         },
     })
+
+from django.shortcuts import render
+
+
+
+def generate_report(request):
+    if request.method == 'GET':
+        date_from = request.GET.get('date_from')
+        date_until = request.GET.get('date_until')
+
+        # Получаем заказы из базы данных в выбранном диапазоне дат
+        orders = m.OrderStorage.objects.filter(created_at__range=[date_from, date_until])
+
+        # Создаем новый документ Word и генерируем отчет
+
+        # Возвращаем JSON-ответ об успешной генерации отчета
+        return JsonResponse({'message': 'Отчет успешно сгенерирован'})
+
+    else:
+        # Если запрос не является GET-запросом, отобразить форму
+        return render(request, 'users_report_director.html')

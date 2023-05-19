@@ -70,7 +70,7 @@ class OrderStorage(models.Model):
     datafinish = models.DateTimeField(verbose_name='Дата окончания хранения', blank=True, null=True)
     created_at = models.DateTimeField(verbose_name='Создан', auto_now_add=True)
     updated_at = models.DateTimeField(verbose_name='Обновлён', auto_now=True)
-    cheque = models.FileField(upload_to='checks/', null=True, blank=True)
+    cheque = models.FileField('Чек', upload_to='checks/', null=True, blank=True)
 
     def get_absolute_url(self):
         return reverse('order_detail', kwargs={'pk': self.pk})

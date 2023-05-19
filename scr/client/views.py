@@ -130,17 +130,16 @@ def order_pay_tire(request, pk):
     check_filename = chek_gen.generate_pdf_check(order)
     order.cheque.name = check_filename
     order.save()
-    #
-    #
-    # # Отправка почты с вложенным PDF-чеком
-    # subject = 'Ваш заказ и чек'
-    # message = 'Спасибо за ваш заказ! Мы рады что вы выбрали именно нас! \n' \
-    #           'Ваш чек прикреплён к данному письму'
-    # to_email = order.user.email
-    #
-    # email = EmailMessage(subject, message, settings.EMAIL_HOST_USER, [to_email])
-    # email.attach_file(os.path.join(settings.MEDIA_ROOT, check_filename))
-    # email.send()
+
+    # Отправка почты с вложенным PDF-чеком
+    subject = 'Ваш заказ и чек'
+    message = 'Спасибо за ваш заказ! Мы рады что вы выбрали именно нас! \n' \
+              'Ваш чек прикреплён к данному письму'
+    to_email = order.user.email
+
+    email = EmailMessage(subject, message, settings.EMAIL_HOST_USER, [to_email])
+    email.attach_file(os.path.join(settings.MEDIA_ROOT, check_filename))
+    email.send()
 
     return HttpResponse('Чек отправлен на вашу почту.')
 
