@@ -3,8 +3,12 @@ from django.shortcuts import get_object_or_404, redirect, render
 from django.views.generic import TemplateView, UpdateView, DetailView, ListView, CreateView
 from django.contrib.auth import get_user_model
 from django.urls import reverse_lazy
+from django.http import HttpResponse
+from django.core.mail import EmailMessage
 from . import forms as f
 import core.models as m
+import os
+from django.conf import settings
 from service import chek_gen
 
 
@@ -124,10 +128,21 @@ def order_pay_tire(request, pk):
     order = get_object_or_404(m.OrderStorage, pk=pk)
     order.is_payed = True
     check_filename = chek_gen.generate_pdf_check(order)
-
     order.cheque.name = check_filename
     order.save()
-    return redirect(reverse_lazy('client_order_detail', kwargs={'pk': pk}))
+    #
+    #
+    # # Отправка почты с вложенным PDF-чеком
+    # subject = 'Ваш заказ и чек'
+    # message = 'Спасибо за ваш заказ! Мы рады что вы выбрали именно нас! \n' \
+    #           'Ваш чек прикреплён к данному письму'
+    # to_email = order.user.email
+    #
+    # email = EmailMessage(subject, message, settings.EMAIL_HOST_USER, [to_email])
+    # email.attach_file(os.path.join(settings.MEDIA_ROOT, check_filename))
+    # email.send()
+
+    return HttpResponse('Чек отправлен на вашу почту.')
 
 
 def order_cancel_tire(request, pk):
