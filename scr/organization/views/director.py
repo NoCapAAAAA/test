@@ -1,5 +1,9 @@
+import json
+
 from core import models as m
 from django.contrib import messages
+from django.shortcuts import render
+from docx.shared import Cm
 from service.filters import UsersFilterDirector
 from service.decorators import group_required
 from service.charts import months, colorPrimary, colorSuccess, colorDanger, generate_color_palette, get_year_dict
@@ -145,7 +149,7 @@ class DirectorUsersReportView(TemplateView):
     def dispatch(self, request, *args, **kwargs):
         return super().dispatch(request, *args, **kwargs)
 
-    template_name = 'director/users_report_director.html'
+    template_name = 'director/report.html'
 
 
 def create_report(request):
@@ -288,23 +292,58 @@ def get_sales_chart(request, year):
         },
     })
 
-from django.shortcuts import render
-
+import io
+from django.http import HttpResponse
+from docx import Document
+import tempfile
 
 
 def generate_report(request):
-    if request.method == 'GET':
-        date_from = request.GET.get('date_from')
-        date_until = request.GET.get('date_until')
+    if request.method == 'POST':
+        date_from = request.POST.get('date_from')
+        date_until = request.POST.get('date_until')
 
-        # Получаем заказы из базы данных в выбранном диапазоне дат
-        orders = m.OrderStorage.objects.filter(created_at__range=[date_from, date_until])
+        # Получение заказов в выбранном диапазоне дат
+        orders = m.OrderStorage.objects.filter(created_at__range=[date_from, date_until]).order_by('created_at')
 
-        # Создаем новый документ Word и генерируем отчет
+        # Создание нового документа
+        document = Document()
 
-        # Возвращаем JSON-ответ об успешной генерации отчета
-        return JsonResponse({'message': 'Отчет успешно сгенерирован'})
+        # Добавление заголовка
+        document.add_heading(f'Отчет о заказах с {date_from} по {date_until}', level=1)
 
-    else:
-        # Если запрос не является GET-запросом, отобразить форму
-        return render(request, 'users_report_director.html')
+        # Создание таблицы и добавление заголовков столбцов
+        table = document.add_table(rows=1, cols=8)
+        table.style = 'Table Grid'
+
+        # Установка размера таблицы
+        table.width = Cm(25)  # Установите ширину таблицы в сантиметрах
+        table.height = Cm(10)  # Установите высоту таблицы в сантиметрах
+
+        headers = ['Номер заказа', 'Клиент', 'Размер шин', "Период хранения", "Адрес сервиса", 'Статус заказа', 'Стоимость заказа', 'Создан']
+        for i, header in enumerate(headers):
+            table.cell(0, i).text = header
+
+        # Заполнение таблицы данными
+        for i, order in enumerate(orders):
+            row_cells = table.add_row().cells
+            row_cells[0].text = str(order.pk)
+            row_cells[1].text = str(order.user)
+            row_cells[2].text = str(order.size) + ' R'
+            row_cells[3].text = str(order.period) + ' мес.'
+            row_cells[4].text = str(order.adress)
+            row_cells[5].text = str(order.get_status_display())
+            row_cells[6].text = str(order.price) + 'руб.'
+            row_cells[7].text = str(order.created_at)
+
+
+        # Создание HTTP-ответа для скачивания документа
+        response = HttpResponse(content_type='application/vnd.openxmlformats-officedocument.wordprocessingml.document')
+        response['Content-Disposition'] = 'attachment; filename=report.docx'
+
+        # Сохранение документа в HTTP-ответе
+        document.save(response)
+
+        return response
+
+    return render(request, 'director/report.html')
