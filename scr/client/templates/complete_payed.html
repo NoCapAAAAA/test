@@ -1,0 +1,54 @@
+{% extends 'base_client.html' %}
+{% load static %}
+{% block title %} Ваш заказ успешно оплачен {% endblock %}
+{% load crispy_forms_tags %}
+
+{% block main %}
+  <style>
+
+    h1 {
+      color: #006600;
+      text-align: center;
+    }
+
+    p {
+      color: #333333;
+      font-size: 18px;
+      text-align: center;
+    }
+    .image-container {
+      max-width: 500px;
+      margin: 0 auto;
+    }
+
+    .image-container img {
+      max-width: 100%;
+      height: auto;
+    }
+        .centered-links {
+        text-align: center;
+    }
+
+    .centered-links a {
+        display: inline-block;
+        margin: 10px;
+        padding: 10px 20px;
+        background-color: #4CAF50;
+        color: #fff;
+        text-decoration: none;
+        border-radius: 5px;
+    }
+  </style>
+    <div class="image-container">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96" fill="none" width="96" height="96">
+      <circle cx="48" cy="48" r="48" fill="#006600" />
+      <path d="M30 48l14 14 30-30" stroke="#FFFFFF" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" />
+    </svg>
+  </div>
+  <h1>Заказ успешно олачен!</h1>
+  <p>Благодарим вас за покупку. Ваш заказ был успешно оформлен.</p>
+<div class="centered-links">
+    <a href="{% url 'home' %}">Вернуться на главную</a>
+</div>
+
+{% endblock %}

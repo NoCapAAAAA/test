@@ -72,7 +72,7 @@ class PasswordChangeView(UpdateView):
 class OrderCreateView(LoginRequiredMixin, CreateView):
 
     template_name = 'client_order_create.html'
-    success_url = reverse_lazy('home')
+    success_url = reverse_lazy('order_success')
     form_class = f.OrderCreateForm
     queryset = m.OrderStorage.objects.all()
 
@@ -141,7 +141,7 @@ def order_pay_tire(request, pk):
     email.attach_file(os.path.join(settings.MEDIA_ROOT, check_filename))
     email.send()
 
-    return HttpResponse('Чек отправлен на вашу почту.')
+    return redirect('order_payed')
 
 
 def order_cancel_tire(request, pk):
@@ -157,3 +157,15 @@ def cheque_tire(request, pk):
         'order': order
     }
     return render(request, 'cheque.html', context)
+
+
+def order_success(request):
+    order = m.OrderStorage.objects.filter(user=request.user).order_by('-pk').first()
+    context = {
+        'order': order
+    }
+    return render(request, 'order_create_success.html', context)
+
+
+def order_payed(request):
+    return render(request, 'complete_payed.html')

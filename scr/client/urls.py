@@ -15,5 +15,8 @@ urlpatterns = [
     path('order_pay_tire/<int:pk>/', v.order_pay_tire, name='order_pay_tire'),
     path('order_cancel_tire/<int:pk>/', v.order_cancel_tire, name='order_cancel_tire'),
     path('order_cheque_tire/<int:pk>/', v.cheque_tire, name='order_cheque_tire'),
+    path('order_success/', v.order_success, name='order_success'),
+    path('order_payed/', v.order_payed, name='order_payed'),
+
 
 ]
