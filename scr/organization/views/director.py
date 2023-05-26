@@ -1,5 +1,3 @@
-import json
-
 from core import models as m
 from django.contrib import messages
 from django.shortcuts import render
@@ -10,10 +8,9 @@ from service.charts import months, colorPrimary, colorSuccess, colorDanger, gene
 from django.contrib.auth.models import Group
 from organization import forms as f
 from django.utils.decorators import method_decorator
-from django.views.generic import UpdateView, ListView, TemplateView
+from django.views.generic import UpdateView, ListView, TemplateView, CreateView
 from django.urls import reverse_lazy
-from django.http import HttpResponse, JsonResponse
-from docx import *
+from django.http import JsonResponse
 from django.utils import timezone
 from io import BytesIO
 from datetime import datetime, date
@@ -78,6 +75,47 @@ class DirectorUsersListView(ListView):
         self.no_search_result = True if not search_results.qs else False
         return search_results.qs.distinct()
 
+# Директор листает дропдаун со справочниками,
+# нажимает на нужный ему перекидывает на Лист существующих,
+# так же кнопка создать новый, есть возможность удалить существующий либо изменить
+
+class DirectorCreateSizeView(CreateView):
+    @method_decorator(group_required('Директор'))
+    def dispatch(self, request, *args, **kwargs):
+        return super().dispatch(request, *args, **kwargs)
+    template_name = 'manager/create_user_manager.html'
+    success_url = reverse_lazy('director_list_size')
+    form_class = f.CreateUserForm
+
+
+class DirectorCreatePeriodView(CreateView):
+    @method_decorator(group_required('Директор'))
+    def dispatch(self, request, *args, **kwargs):
+        return super().dispatch(request, *args, **kwargs)
+    template_name = 'manager/create_user_manager.html'
+    success_url = reverse_lazy('director_list_size')
+    form_class = f.CreateUserForm
+
+
+class DirectorCreateAdressView(CreateView):
+    @method_decorator(group_required('Директор'))
+    def dispatch(self, request, *args, **kwargs):
+        return super().dispatch(request, *args, **kwargs)
+    template_name = 'manager/create_user_manager.html'
+    success_url = reverse_lazy('director_list_size')
+    form_class = f.CreateUserForm
+
+
+class DirectorCreateQuantityView(CreateView):
+    @method_decorator(group_required('Директор'))
+    def dispatch(self, request, *args, **kwargs):
+        return super().dispatch(request, *args, **kwargs)
+    template_name = 'manager/create_user_manager.html'
+    success_url = reverse_lazy('director_list_size')
+    form_class = f.CreateUserForm
+
+
+###
 
 class DirectorUpdateUserView(UpdateView):
     @method_decorator(group_required('Директор'))
