@@ -182,6 +182,17 @@ class DirectorListEmployeeView(ListView):
     queryset = User.objects.filter(groups__name='Менеджер')
 
 
+class DirectorListCallApplicationView(ListView):
+    @method_decorator(group_required('Директор'))
+    def dispatch(self, request, *args, **kwargs):
+        return super().dispatch(request, *args, **kwargs)
+
+    template_name = 'director/list_call_application.html'
+    model = m.CallApplication
+    paginate_by = 7
+    context_object_name = 'call_app'
+
+
 class DirectorUsersReportView(TemplateView):
     @method_decorator(group_required('Директор'))
     def dispatch(self, request, *args, **kwargs):
