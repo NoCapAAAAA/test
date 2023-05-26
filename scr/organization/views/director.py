@@ -187,7 +187,7 @@ class DirectorListCallApplicationView(ListView):
     def dispatch(self, request, *args, **kwargs):
         return super().dispatch(request, *args, **kwargs)
 
-    template_name = 'director/list_call_application.html'
+    template_name = 'director/list_call_app_director.html'
     model = m.CallApplication
     paginate_by = 7
     context_object_name = 'call_app'

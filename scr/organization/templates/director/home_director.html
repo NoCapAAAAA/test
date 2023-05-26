@@ -380,7 +380,10 @@
 
 <div class="card">
 <div class="card-body">
-  <h6 class="card-title">Последние обратные связи</h6>
+<div class="d-flex justify-content-between">
+    <h6 class="card-title">Последние обращения</h6>
+    <a href="{% url 'director_list_call_app' %}" class="link-1">смотреть все</a>
+</div>
   <div class="table-responsive">
     <table id="recent-orders" class="table">
       <thead>

@@ -12,7 +12,7 @@ urlpatterns = [
     path('director/list-empl/', director_views.DirectorListEmployeeView.as_view(), name='director_list_employee_view'),
     path('director/list-empl/<int:pk>/', director_views.DirectorEmployeeDetailView.as_view(), name='director_detail_employee_view'),
     path('director/user-list/', director_views.DirectorUsersListView.as_view(), name='director_create_employee'),
-    path('director/user-list/', director_views.DirectorUsersListView.as_view(), name='director_create_employee'),
+    path('director/call-app-list/', director_views.DirectorListCallApplicationView.as_view(), name='director_list_call_app'),
     path('director/report-gen/', director_views.generate_report, name='report_generate'),
     # Test
     path("director/filter-options/", director_views.get_filter_options, name="chart-filter-options"),
