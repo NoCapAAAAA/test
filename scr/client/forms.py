@@ -14,6 +14,11 @@ class UserEditForm(auth_forms.UserChangeForm):
         fields = ('username', 'email', 'last_name', 'first_name', 'middle_name',
                   'phone_number', 'gender', 'photo')
 
+        help_texts = {
+            'username': None,
+        }
+
+
 
 class CustomPasswordChangeForm(auth_forms.PasswordChangeForm):
     def __init__(self, instance, *args, **kwargs):

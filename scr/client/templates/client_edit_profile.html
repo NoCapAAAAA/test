@@ -4,20 +4,62 @@
 {% load crispy_forms_tags %}
 
 {% block main %}
+<style>
+    .row {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .col-6 {
+        flex: 0 0 50%;
+        max-width: 50%;
+        padding: 0 15px;
+    }
+
+    .form-group {
+        margin-bottom: 15px; /* Добавленный отступ между элементами формы */
+    }
+</style>
+
 <div class="block">
-	<div class="container">
-		<div class="row">
-			{% include 'client_abstract_main.html' %}
-			<div class="col-12 col-lg-9 mt-4 mt-lg-0">
-				<div class="row no-gutters">
-					<!-- <div class="col-12 col-lg-7 col-xl-6"> -->
-					<form action="" method="post" class="row no-gutters" enctype="multipart/form-data">
-						{% csrf_token %} {{ form|crispy }}
-						<input type="submit" class="btn btn-primary my-2" value="Сохранить">
-					</form>
-				</div>
-			</div>
-		</div>
-	</div>
+    <div class="container">
+        <div class="row">
+            {% include 'client_abstract_main.html' %}
+            <div class="col-12 col-lg-9 mt-4 mt-lg-0">
+                <div class="row">
+                    <form action="" method="post" class="row" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="col-6">
+                            <div class="form-group">
+                                {{ form.last_name|as_crispy_field }}
+                            </div>
+                            <div class="form-group">
+                                {{ form.first_name|as_crispy_field }}
+                            </div>
+                            <div class="form-group">
+                                {{ form.middle_name|as_crispy_field }}
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="form-group">
+                                {{ form.username|as_crispy_field }}
+                            </div>
+                            <div class="form-group">
+                                {{ form.phone_number|as_crispy_field }}
+                            </div>
+                            <div class="form-group">
+                                {{ form.email|as_crispy_field }}
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <input type="submit" class="btn btn-primary my-2" value="Сохранить">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+
+
 {% endblock %}
