@@ -1,8 +1,6 @@
 from django.db.models.signals import pre_save
 from django.dispatch import receiver
 from django.utils import timezone
-from celery import shared_task
-from django.core.mail import send_mail
 from core.models import OrderStorage, OrderStatus
 
 
