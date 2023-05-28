@@ -17,6 +17,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_celery_results',
 
     # apps
     'core',
@@ -136,3 +137,8 @@ EMAIL_HOST_PASSWORD = 'txzpwuoyqjwytmok'
 EMAIL_SERVER = EMAIL_HOST_USER
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 EMAIL_ADMIN = ['arttyyom@yandex.ru']
+# Включение поддержки Celery
+CELERY_BROKER_URL = 'redis://redis:6379/0'
+CELERY_RESULT_BACKEND = 'redis://redis:6379/0'
+
+CELERY_CACHE_BACKEND = 'django-cache'  # Использование кэша Django

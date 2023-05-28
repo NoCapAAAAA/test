@@ -3,7 +3,6 @@ from django.shortcuts import get_object_or_404, redirect, render
 from django.views.generic import TemplateView, UpdateView, DetailView, ListView, CreateView
 from django.contrib.auth import get_user_model
 from django.urls import reverse_lazy
-from django.http import HttpResponse
 from django.core.mail import EmailMessage
 from . import forms as f
 import core.models as m
