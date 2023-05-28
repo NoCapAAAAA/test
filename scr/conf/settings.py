@@ -18,7 +18,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django_celery_results',
-
     # apps
     'core',
     'authentication',
@@ -31,6 +30,7 @@ INSTALLED_APPS = [
     'bootstrapform',
     'captcha',
 ]
+
 SITE_ID = 1
 AUTH_USER_MODEL = 'authentication.User'
 MIDDLEWARE = [
@@ -138,10 +138,24 @@ EMAIL_SERVER = EMAIL_HOST_USER
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 EMAIL_ADMIN = ['arttyyom@yandex.ru']
 # Включение поддержки Celery
+# ...
 
+CELERY_BROKER_URL = 'redis://localhost:6379/0'
+CELERY_RESULT_BACKEND = 'redis://localhost:6379/0'
 
+# ...
 
-CELERY_BROKER_URL = 'redis://127.0.0.1:6379'
-CELERY_RESULT_BACKEND = 'redis://127.0.0.1:6379/'
+CELERY_ACCEPT_CONTENT = ['json']
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_RESULT_SERIALIZER = 'json'
 
-CELERY_CACHE_BACKEND = 'django-cache'  # Использование кэша Django
+# ...
+from datetime import timedelta
+from celery.schedules import crontab
+CELERY_BEAT_SCHEDULE = {
+    'check-conditions-every-second': {
+        'task': 'core.tasks.check_order_conditions',
+         'schedule': crontab(hour=0, minute=0),
+    },
+}
+
